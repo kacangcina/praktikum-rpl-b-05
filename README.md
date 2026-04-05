@@ -1,5 +1,5 @@
 # praktikum-rpl-b-05
-Kelompok 5 RPL Kelas B
+Kelompok 5 mata kuliah RPL Kelas B 2026
 
 Anggota:
 1. L0124143 - Syafiq Nafil Arkan
