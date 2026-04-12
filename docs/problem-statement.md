@@ -5,12 +5,3 @@ Masyarakat Indonesia yang ingin belajar memasak secara mandiri mengalami kesulit
 Solusi berupa aplikasi cookbook berbasis web dan mobile diharapkan dapat menyediakan platform belajar memasak terpadu yang menghubungkan pengguna dengan resep lokal yang terstruktur serta fasilitas kelas memasak live dari chef terverifikasi.
 
 ---
-
-## Catatan Review Silang
-
-| | |
-|---|---|
-| **Direview oleh kelompok** | _(isi nama kelompok reviewer)_ |
-| **Tanggal review** | _(isi tanggal)_ |
-| **Feedback** | _(isi feedback dari kelompok lain)_ |
-| **Tindak lanjut** | _(isi revisi yang dilakukan jika ada)_ |
