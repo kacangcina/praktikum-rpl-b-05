@@ -11,7 +11,7 @@
 
 ---
 
-## Must-have (Wajib Ada di MVP)
+## Must-have 
 
 | ID | User Story | Role | Referensi US |
 |---|---|---|---|
@@ -24,7 +24,7 @@
 
 ---
 
-## Should-have (Penting, Bisa Ditunda)
+## Should-have 
 
 | ID | User Story | Role | Referensi US |
 |---|---|---|---|
@@ -39,7 +39,7 @@
 
 ---
 
-## Could-have (Nice to Have)
+## Could-have 
 
 | ID | User Story | Role | Referensi US |
 |---|---|---|---|
@@ -49,7 +49,7 @@
 
 ---
 
-## Won't-have (Tidak Dikerjakan Semester Ini)
+## Won't-have 
 
 | ID | Fitur | Alasan |
 |---|---|---|
