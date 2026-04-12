@@ -1,8 +1,8 @@
-## Problem Statement
+# Problem Statement
 
-Masyarakat Indonesia yang ingin belajar memasak secara mandiri mengalami kesulitan menemukan panduan resep yang terstruktur, relevan dengan bahan lokal, dan dilengkapi dengan media pembelajaran interaktif ketika mereka ingin  memulai atau meningkatkan kemampuan memasak mereka. Hal ini menyebabkan proses belajar memasak menjadi tidak terarah, mudah menyerah di tengah jalan, dan tidak ada wadah untuk belajar langsung dari chef berpengalaman secara digital. 
+Masyarakat umum atau mahasiswa yang ingin memasak secara mandiri mengalami kesulitan dalam menentukan menu masakan yang tepat berdasarkan keterbatasan bahan yang tersedia di dapur mereka[cite: 225]. [cite_start]Hal ini menyebabkan bahan makanan terbuang sia-sia (food waste) atau kebingungan dalam mencari resep yang cocok secara manual melalui berbagai platform yang terfragmentasi.
 
-Solusi berupa aplikasi cookbook berbasis web dan mobile diharapkan dapat menyediakan platform belajar memasak terpadu yang menghubungkan pengguna dengan resep lokal yang terstruktur serta fasilitas kelas memasak live dari chef terverifikasi.
+Solusi berupa **Aplikasi Cookbook dengan integrasi AI Gemini** diharapkan dapat menjadi asisten masak pintar yang memberikan saran resep instan secara akurat berdasarkan input bahan dari pengguna, sekaligus menjadi platform komunitas untuk berbagi dan menyimpan resep pribadi secara terorganisir.
 
 ---
 
