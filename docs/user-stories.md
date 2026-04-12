@@ -1,5 +1,12 @@
 # User Stories & Acceptance Criteria
 
+**Proyek:** Cookbook App  
+**Mata Kuliah:** Rekayasa Perangkat Lunak – Praktikum P2  
+**Program Studi:** Informatika – Universitas Sebelas Maret  
+**Tahun Akademik:** 2025/2026  
+
+---
+
 ## Identifikasi Role / Aktor
 
 | No | Role | Deskripsi |
@@ -15,7 +22,7 @@
 
 ---
 
-### 1. Menjelajah Resep Tanpa Akun
+### US-01 — Menjelajah Resep Tanpa Akun
 
 **Role:** Guest  
 **User Story:**  
@@ -23,19 +30,19 @@ Sebagai tamu, saya ingin menjelajah dan melihat daftar resep tanpa harus membuat
 
 **Acceptance Criteria:**
 
-- **a:**  
+- **AC-01a:**  
   Given saya belum login dan membuka halaman utama aplikasi,  
   When halaman selesai dimuat,  
   Then sistem menampilkan minimal 10 resep publik lengkap dengan judul, foto, dan tingkat kesulitan tanpa memunculkan dialog login.
 
-- **b (edge case):**  
+- **AC-01b (edge case):**  
   Given saya belum login dan menekan tombol "Simpan ke Koleksi" pada sebuah resep,  
   When tombol tersebut ditekan,  
   Then sistem menampilkan pesan "Daftar atau masuk untuk menyimpan resep" dan menampilkan tombol menuju halaman registrasi, bukan langsung menyimpan resep.
 
 ---
 
-### 2. Mendaftar Akun Baru
+### US-02 — Mendaftar Akun Baru
 
 **Role:** Guest  
 **User Story:**  
@@ -43,19 +50,19 @@ Sebagai tamu, saya ingin mendaftar akun baru menggunakan email dan kata sandi, a
 
 **Acceptance Criteria:**
 
-- **a:**  
+- **AC-02:**  
   Given saya berada di halaman registrasi dan mengisi email valid, kata sandi minimal 8 karakter, serta nama lengkap,  
   When saya menekan tombol "Daftar",  
   Then sistem membuat akun baru, mengirimkan email verifikasi ke alamat yang didaftarkan, dan menampilkan pesan "Akun berhasil dibuat. Cek email kamu untuk verifikasi."
 
-- **b (edge case):**  
+- **AC-02 (edge case):**  
   Given saya berada di halaman registrasi dan memasukkan email yang sudah terdaftar di sistem,  
   When saya menekan tombol "Daftar",  
   Then sistem menampilkan pesan "Email sudah digunakan. Silakan gunakan email lain atau masuk ke akun kamu." dan tidak membuat akun duplikat.
 
 ---
 
-### 3. Mencari Resep Berdasarkan Nama atau Bahan
+### US-03 — Mencari Resep Berdasarkan Nama atau Bahan
 
 **Role:** User  
 **User Story:**  
@@ -63,19 +70,19 @@ Sebagai pengguna, saya ingin mencari resep berdasarkan nama masakan atau bahan y
 
 **Acceptance Criteria:**
 
-- **a:**  
+- **AC-03:**  
   Given saya sudah login dan berada di halaman pencarian,  
   When saya mengetikkan kata kunci nama masakan atau nama bahan lalu menekan tombol "Cari",  
   Then sistem menampilkan daftar resep yang relevan dalam waktu kurang dari 3 detik, diurutkan berdasarkan tingkat kesesuaian kata kunci.
 
-- **b (edge case):**  
+- **AC-03 (edge case):**  
   Given saya sudah login dan memasukkan kata kunci yang tidak cocok dengan resep manapun,  
   When pencarian dijalankan,  
   Then sistem menampilkan pesan "Tidak ada resep yang ditemukan untuk '[kata kunci]'" dan menyarankan 3 resep populer sebagai alternatif.
 
 ---
 
-### 4. Memfilter Resep Berdasarkan Tingkat Kesulitan
+### US-04 — Memfilter Resep Berdasarkan Tingkat Kesulitan
 
 **Role:** User  
 **User Story:**  
@@ -83,19 +90,19 @@ Sebagai pengguna, saya ingin memfilter resep berdasarkan tingkat kesulitan, agar
 
 **Acceptance Criteria:**
 
-- **a:**  
+- **AC-04:**  
   Given saya sudah login dan berada di halaman daftar resep,  
   When saya memilih filter "Mudah" dari menu filter tingkat kesulitan,  
   Then sistem hanya menampilkan resep dengan label "Mudah" dan menyembunyikan resep berlabel "Sedang" dan "Sulit" selama filter aktif.
 
-- **b (edge case):**  
+- **AC-04 (edge case):**  
   Given saya sudah mengaktifkan filter "Mudah" namun tidak ada resep berlabel tersebut di database,  
   When filter diterapkan,  
   Then sistem menampilkan pesan "Belum ada resep dengan tingkat kesulitan ini" dan menyarankan pengguna untuk menghapus filter.
 
 ---
 
-### 5. Menyimpan Resep ke Koleksi Pribadi
+### US-05 — Menyimpan Resep ke Koleksi Pribadi
 
 **Role:** User  
 **User Story:**  
@@ -103,19 +110,19 @@ Sebagai pengguna, saya ingin menyimpan resep ke dalam koleksi pribadi saya, agar
 
 **Acceptance Criteria:**
 
-- **a:**  
+- **AC-05:**  
   Given saya sudah login dan sedang membuka halaman detail sebuah resep,  
   When saya menekan tombol "Simpan ke Koleksi" dan memilih nama koleksi yang sudah ada atau membuat koleksi baru,  
   Then resep tersimpan ke koleksi yang dipilih dan sistem menampilkan notifikasi "Resep berhasil disimpan ke [nama koleksi]".
 
-- **b (edge case):**  
+- **AC-05 (edge case):**  
   Given saya sudah login dan mencoba menyimpan resep yang sudah ada di koleksi yang sama,  
   When tombol "Simpan ke Koleksi" ditekan dan koleksi yang sama dipilih,  
   Then sistem menampilkan pesan "Resep sudah ada di koleksi ini" dan tidak menambahkan entri duplikat ke koleksi tersebut.
 
 ---
 
-### 6. Mengikuti Kelas Memasak Live
+### US-06 — Mengikuti Kelas Memasak Live
 
 **Role:** User  
 **User Story:**  
@@ -123,19 +130,19 @@ Sebagai pengguna, saya ingin mengikuti sesi kelas memasak live yang diselenggara
 
 **Acceptance Criteria:**
 
-- **a:**  
+- **AC-06:**  
   Given saya sudah login dan membuka halaman kelas live yang sedang berlangsung,  
   When saya menekan tombol "Ikuti Kelas",  
   Then sistem menampilkan jendela streaming live beserta kolom komentar aktif yang memungkinkan saya mengirim pertanyaan kepada chef.
 
-- **b (edge case):**  
+- **AC-06 (edge case):**  
   Given saya sudah login dan mencoba mengakses halaman kelas live yang sudah berakhir,  
   When halaman tersebut dibuka,  
   Then sistem menampilkan pesan "Kelas sudah selesai" dan menampilkan tombol "Tonton Rekaman" jika rekaman tersedia, atau "Lihat Kelas Lainnya" jika tidak ada rekaman.
 
 ---
 
-### 7. Membuat Resep Sendiri
+### US-07 — Membuat Resep Sendiri
 
 **Role:** User  
 **User Story:**  
@@ -143,19 +150,19 @@ Sebagai pengguna, saya ingin membuat dan mempublikasikan resep masakan saya send
 
 **Acceptance Criteria:**
 
-- **a:**  
+- **AC-07:**  
   Given saya sudah login sebagai user dan membuka halaman buat resep,  
   When saya mengisi judul, minimal 3 bahan, minimal 3 langkah masak, tingkat kesulitan, dan estimasi waktu lalu menekan "Kirim untuk Direview",  
   Then resep tersimpan dengan status "Menunggu Review" dan saya menerima notifikasi "Resep kamu sedang direview oleh admin."
 
-- **b (edge case):**  
+- **AC-07 (edge case):**  
   Given saya sudah login sebagai user dan mencoba mengirim resep tanpa mengisi langkah masak,  
   When tombol "Kirim untuk Direview" ditekan,  
   Then sistem menampilkan pesan "Langkah masak wajib diisi" tepat di bawah kolom tersebut dan mencegah formulir terkirim hingga kolom tersebut dilengkapi.
 
 ---
 
-### 8. Mempublikasikan Resep (Creator)
+### US-08 — Mempublikasikan Resep (Creator)
 
 **Role:** Creator  
 **User Story:**  
@@ -163,19 +170,19 @@ Sebagai creator, saya ingin mempublikasikan resep lengkap dengan bahan dan langk
 
 **Acceptance Criteria:**
 
-- **a:**  
+- **AC-08:**  
   Given saya sudah login sebagai creator terverifikasi dan membuka halaman tambah resep,  
   When saya mengisi judul, minimal 3 bahan, minimal 3 langkah masak, tingkat kesulitan, dan estimasi waktu lalu menekan "Kirim untuk Direview",  
   Then resep tersimpan dengan status "Menunggu Review" dan saya menerima notifikasi "Resep kamu sedang direview oleh admin."
 
-- **b (edge case):**  
+- **AC-08 (edge case):**  
   Given saya sudah login sebagai creator dan mencoba mempublikasikan resep tanpa mengisi kolom langkah masak,  
   When tombol "Kirim untuk Direview" ditekan,  
   Then sistem menampilkan pesan "Langkah masak wajib diisi" tepat di bawah kolom tersebut dan mencegah formulir terkirim.
 
 ---
 
-### 9. Menyelenggarakan Sesi Live Kelas Memasak
+### US-09 — Menyelenggarakan Sesi Live Kelas Memasak
 
 **Role:** Creator  
 **User Story:**  
@@ -183,19 +190,19 @@ Sebagai creator, saya ingin membuat dan memulai sesi live kelas memasak di platf
 
 **Acceptance Criteria:**
 
-- **a:**  
+- **AC-09:**  
   Given saya sudah login sebagai creator terverifikasi dan mengisi judul sesi, deskripsi, dan jadwal live,  
   When saya menekan tombol "Mulai Live",  
   Then sesi live aktif, muncul di halaman utama dengan label "Sedang Live", dan pengguna yang sedang online menerima notifikasi push tentang sesi yang baru dimulai.
 
-- **b (edge case):**  
+- **AC-09 (edge case):**  
   Given saya sudah login sebagai creator dan mencoba memulai sesi live tanpa mengisi judul,  
   When tombol "Mulai Live" ditekan,  
   Then sistem menampilkan pesan "Judul sesi wajib diisi" dan sesi tidak dimulai sampai kolom judul terisi.
 
 ---
 
-### 10. Memverifikasi Akun Creator
+### US-10 — Memverifikasi Akun Creator
 
 **Role:** Admin  
 **User Story:**  
@@ -203,19 +210,19 @@ Sebagai admin, saya ingin memverifikasi akun creator yang mengajukan permohonan,
 
 **Acceptance Criteria:**
 
-- **AC-10a:**  
+- **AC-10:**  
   Given saya sudah login sebagai admin dan membuka dashboard verifikasi yang menampilkan pengajuan baru,  
   When saya menekan tombol "Setujui" pada pengajuan creator yang dokumennya lengkap,  
   Then status akun berubah menjadi "Terverifikasi", lencana terverifikasi muncul di profil publik creator, dan creator menerima notifikasi "Akun kamu telah diverifikasi."
 
-- **AC-10b (edge case):**  
+- **AC-10 (edge case):**  
   Given saya sudah login sebagai admin dan menemukan pengajuan creator dengan dokumen tidak lengkap,  
   When saya menekan tombol "Tolak" dan mengisi alasan penolakan,  
   Then status pengajuan berubah menjadi "Ditolak", creator menerima notifikasi berisi alasan penolakan dan instruksi untuk mengajukan ulang, dan akun creator tetap tidak dapat menyelenggarakan kelas live.
 
 ---
 
-### 11. Memoderasi Resep yang Dikirimkan
+### US-11 — Memoderasi Resep yang Dikirimkan
 
 **Role:** Admin  
 **User Story:**  
@@ -223,12 +230,12 @@ Sebagai admin, saya ingin meninjau dan memoderasi resep yang dikirimkan oleh use
 
 **Acceptance Criteria:**
 
-- **a:**  
+- **AC-11:**  
   Given saya sudah login sebagai admin dan membuka dashboard moderasi yang menampilkan resep dengan status "Menunggu Review",  
   When saya menekan tombol "Setujui" pada sebuah resep,  
   Then status resep berubah menjadi "Dipublikasikan", resep langsung tampil dan dapat dicari oleh seluruh pengguna, serta pengirim menerima notifikasi "Resep kamu telah disetujui dan dipublikasikan."
 
-- **b (edge case):**  
+- **AC-11 (edge case):**  
   Given saya sudah login sebagai admin dan menemukan resep yang tidak sesuai pedoman,  
   When saya menekan tombol "Tolak" dan mengisi catatan perbaikan,  
   Then status resep berubah menjadi "Ditolak", resep tidak tampil ke publik, dan pengirim menerima notifikasi berisi catatan perbaikan yang harus dilakukan sebelum mengajukan ulang.
