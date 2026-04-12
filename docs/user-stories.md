@@ -19,7 +19,7 @@
 
 **Role:** Guest  
 **User Story:**  
-Sebagai tamu, saya ingin menjelajah dan melihat daftar resep tanpa harus membuat akun terlebih dahulu, agar saya dapat menilai manfaat aplikasi sebelum memutuskan untuk mendaftar.
+As a Guest, I want to browse and view the recipe list without creating an account, so that I can evaluate the app's benefits before deciding to register.
 
 **Acceptance Criteria:**
 
@@ -39,7 +39,7 @@ Sebagai tamu, saya ingin menjelajah dan melihat daftar resep tanpa harus membuat
 
 **Role:** Guest  
 **User Story:**  
-Sebagai tamu, saya ingin mendaftar akun baru menggunakan email dan kata sandi, agar saya dapat mengakses fitur lengkap aplikasi sebagai pengguna terdaftar.
+As a Guest, I want to register for a new account using my email and password, so that I can access the full features of the application as a registered user.
 
 **Acceptance Criteria:**
 
@@ -59,7 +59,7 @@ Sebagai tamu, saya ingin mendaftar akun baru menggunakan email dan kata sandi, a
 
 **Role:** User  
 **User Story:**  
-Sebagai pengguna, saya ingin mencari resep berdasarkan nama masakan atau bahan yang saya miliki, agar saya dapat dengan cepat menemukan resep yang sesuai tanpa harus menggulir seluruh daftar.
+As a User, I want to search for recipes based on the dish name or ingredients I have, so that I can quickly find suitable recipes without scrolling through the entire list.
 
 **Acceptance Criteria:**
 
@@ -79,7 +79,7 @@ Sebagai pengguna, saya ingin mencari resep berdasarkan nama masakan atau bahan y
 
 **Role:** User  
 **User Story:**  
-Sebagai pengguna, saya ingin memfilter resep berdasarkan tingkat kesulitan, agar saya hanya melihat resep yang sesuai dengan kemampuan memasak saya saat ini.
+As a User, I want to filter recipes by difficulty level, so that I only see recipes that match my current cooking skills.
 
 **Acceptance Criteria:**
 
@@ -99,7 +99,7 @@ Sebagai pengguna, saya ingin memfilter resep berdasarkan tingkat kesulitan, agar
 
 **Role:** User  
 **User Story:**  
-Sebagai pengguna, saya ingin menyimpan resep ke dalam koleksi pribadi saya, agar saya dapat menemukan kembali resep favorit dengan mudah tanpa harus mencari ulang.
+As a User, I want to save recipes to my personal collection, so that I can easily find my favorite recipes again without searching from scratch..
 
 **Acceptance Criteria:**
 
@@ -119,7 +119,7 @@ Sebagai pengguna, saya ingin menyimpan resep ke dalam koleksi pribadi saya, agar
 
 **Role:** User  
 **User Story:**  
-Sebagai pengguna, saya ingin mengikuti sesi kelas memasak live yang diselenggarakan oleh chef, agar saya dapat belajar memasak secara langsung dan mengajukan pertanyaan secara real-time.
+As a User, I want to join live cooking classes hosted by chefs, so that I can learn directly and ask questions in real-time.
 
 **Acceptance Criteria:**
 
@@ -139,7 +139,7 @@ Sebagai pengguna, saya ingin mengikuti sesi kelas memasak live yang diselenggara
 
 **Role:** User  
 **User Story:**  
-Sebagai pengguna, saya ingin membuat dan mempublikasikan resep masakan saya sendiri, agar resep buatan saya dapat dibagikan dan dipelajari oleh pengguna lain di platform.
+As a User, I want to create and publish my own recipes, so that my recipes can be shared and learned by other users on the platform.
 
 **Acceptance Criteria:**
 
@@ -159,7 +159,7 @@ Sebagai pengguna, saya ingin membuat dan mempublikasikan resep masakan saya send
 
 **Role:** Creator  
 **User Story:**  
-Sebagai creator, saya ingin mempublikasikan resep lengkap dengan bahan dan langkah memasaknya, agar resep saya dapat dipelajari oleh pengguna lain di platform.
+As a Creator, I want to publish complete recipes with ingredients and cooking steps, so that my recipes can be accurately followed by other users.
 
 **Acceptance Criteria:**
 
@@ -179,7 +179,7 @@ Sebagai creator, saya ingin mempublikasikan resep lengkap dengan bahan dan langk
 
 **Role:** Creator  
 **User Story:**  
-Sebagai creator, saya ingin membuat dan memulai sesi live kelas memasak di platform, agar saya dapat mengajar dan berinteraksi langsung dengan pengguna yang ingin belajar memasak.
+As a Creator, I want to start a live cooking class session, so that I can teach and interact directly with users who want to learn.
 
 **Acceptance Criteria:**
 
@@ -199,8 +199,7 @@ Sebagai creator, saya ingin membuat dan memulai sesi live kelas memasak di platf
 
 **Role:** Admin  
 **User Story:**  
-Sebagai admin, saya ingin memverifikasi akun creator yang mengajukan permohonan, agar hanya chef yang kredibel dan memenuhi syarat yang dapat menyelenggarakan kelas live.
-
+As an Admin, I want to verify applicant creator accounts, so that only credible and qualified chefs can host live classes.
 **Acceptance Criteria:**
 
 - **AC-10:**  
@@ -219,7 +218,7 @@ Sebagai admin, saya ingin memverifikasi akun creator yang mengajukan permohonan,
 
 **Role:** Admin  
 **User Story:**  
-Sebagai admin, saya ingin meninjau dan memoderasi resep yang dikirimkan oleh user maupun creator sebelum ditampilkan ke publik, agar seluruh konten yang ada di platform sesuai dengan standar kualitas dan pedoman komunitas.
+As an Admin, I want to verify applicant creator accounts, so that only credible and qualified chefs can host live classes.
 
 **Acceptance Criteria:**
 
