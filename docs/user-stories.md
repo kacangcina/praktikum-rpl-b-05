@@ -23,12 +23,12 @@ As a Guest, I want to browse and view the recipe list without creating an accoun
 
 **Acceptance Criteria:**
 
-- **AC-01a:**  
+- **AC-01:**  
   Given saya belum login dan membuka halaman utama aplikasi,  
   When halaman selesai dimuat,  
   Then sistem menampilkan minimal 10 resep publik lengkap dengan judul, foto, dan tingkat kesulitan tanpa memunculkan dialog login.
 
-- **AC-01b (edge case):**  
+- **AC-01 (edge case):**  
   Given saya belum login dan menekan tombol "Simpan ke Koleksi" pada sebuah resep,  
   When tombol tersebut ditekan,  
   Then sistem menampilkan pesan "Daftar atau masuk untuk menyimpan resep" dan menampilkan tombol menuju halaman registrasi, bukan langsung menyimpan resep.
