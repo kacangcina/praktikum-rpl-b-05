@@ -101,7 +101,7 @@
 
 **Acceptance Criteria:**
 - **AC-10:** Given saya membuka dashboard verifikasi, When saya meninjau profil pendaftar dan menekan "Setujui", Then akun pendaftar mendapatkan status Creator dan akses untuk mengunggah video kelas.
-=======
+
 1. **User**: Pengguna terdaftar yang menggunakan fitur AI dan mengelola resep pribadi.
 2. **Creator**: Pengguna yang berkontribusi mengunggah resep berkualitas untuk komunitas.
 3. **Admin**: Pengelola sistem yang memoderasi konten resep agar tetap sesuai standar.
