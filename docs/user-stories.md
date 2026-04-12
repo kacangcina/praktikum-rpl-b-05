@@ -175,7 +175,27 @@ As a Creator, I want to publish complete recipes with ingredients and cooking st
 
 ---
 
-### US-09 — Menyelenggarakan Sesi Live Kelas Memasak
+### US-09 — Konsultasi Masalah Memasak dengan AI
+ 
+**Role:** User  
+**User Story:**  
+As a User, I want to consult with an AI assistant regarding cooking issues I encounter, so that I can immediately diagnose the cause and improve my results without waiting for a human response.
+ 
+**Acceptance Criteria:**
+ 
+- **AC-09:**  
+  Given saya sudah login dan membuka halaman konsultasi AI,  
+  When saya mengetikkan pertanyaan seputar masalah memasak seperti "kenapa masakanku gosong padahal sudah ikut resep?" lalu menekan tombol "Kirim",  
+  Then AI memberikan jawaban yang relevan berisi penjelasan penyebab dan saran perbaikan dalam waktu kurang dari 10 detik.
+ 
+- **AC-09 (edge case):**  
+  Given saya sudah login dan mengirimkan pertanyaan yang tidak berhubungan dengan memasak,  
+  When pertanyaan tersebut dikirim,  
+  Then AI menampilkan pesan "Maaf, saya hanya dapat membantu pertanyaan seputar memasak dan resep" dan tidak memberikan jawaban di luar topik tersebut.
+ 
+---
+
+### US-10 — Menyelenggarakan Sesi Live Kelas Memasak
 
 **Role:** Creator  
 **User Story:**  
@@ -183,38 +203,38 @@ As a Creator, I want to start a live cooking class session, so that I can teach 
 
 **Acceptance Criteria:**
 
-- **AC-09:**  
+- **AC-10:**  
   Given saya sudah login sebagai creator terverifikasi dan mengisi judul sesi, deskripsi, dan jadwal live,  
   When saya menekan tombol "Mulai Live",  
   Then sesi live aktif, muncul di halaman utama dengan label "Sedang Live", dan pengguna yang sedang online menerima notifikasi push tentang sesi yang baru dimulai.
 
-- **AC-09 (edge case):**  
+- **AC-10 (edge case):**  
   Given saya sudah login sebagai creator dan mencoba memulai sesi live tanpa mengisi judul,  
   When tombol "Mulai Live" ditekan,  
   Then sistem menampilkan pesan "Judul sesi wajib diisi" dan sesi tidak dimulai sampai kolom judul terisi.
 
 ---
 
-### US-10 — Memverifikasi Akun Creator
+### US-11 — Memverifikasi Akun Creator
 
 **Role:** Admin  
 **User Story:**  
 As an Admin, I want to verify applicant creator accounts, so that only credible and qualified chefs can host live classes.
 **Acceptance Criteria:**
 
-- **AC-10:**  
+- **AC-11:**  
   Given saya sudah login sebagai admin dan membuka dashboard verifikasi yang menampilkan pengajuan baru,  
   When saya menekan tombol "Setujui" pada pengajuan creator yang dokumennya lengkap,  
   Then status akun berubah menjadi "Terverifikasi", lencana terverifikasi muncul di profil publik creator, dan creator menerima notifikasi "Akun kamu telah diverifikasi."
 
-- **AC-10 (edge case):**  
+- **AC-11 (edge case):**  
   Given saya sudah login sebagai admin dan menemukan pengajuan creator dengan dokumen tidak lengkap,  
   When saya menekan tombol "Tolak" dan mengisi alasan penolakan,  
   Then status pengajuan berubah menjadi "Ditolak", creator menerima notifikasi berisi alasan penolakan dan instruksi untuk mengajukan ulang, dan akun creator tetap tidak dapat menyelenggarakan kelas live.
 
 ---
 
-### US-11 — Memoderasi Resep yang Dikirimkan
+### US-12 — Memoderasi Resep yang Dikirimkan
 
 **Role:** Admin  
 **User Story:**  
@@ -222,12 +242,12 @@ As an Admin, I want to verify applicant creator accounts, so that only credible 
 
 **Acceptance Criteria:**
 
-- **AC-11:**  
+- **AC-12:**  
   Given saya sudah login sebagai admin dan membuka dashboard moderasi yang menampilkan resep dengan status "Menunggu Review",  
   When saya menekan tombol "Setujui" pada sebuah resep,  
   Then status resep berubah menjadi "Dipublikasikan", resep langsung tampil dan dapat dicari oleh seluruh pengguna, serta pengirim menerima notifikasi "Resep kamu telah disetujui dan dipublikasikan."
 
-- **AC-11 (edge case):**  
+- **AC-12 (edge case):**  
   Given saya sudah login sebagai admin dan menemukan resep yang tidak sesuai pedoman,  
   When saya menekan tombol "Tolak" dan mengisi catatan perbaikan,  
   Then status resep berubah menjadi "Ditolak", resep tidak tampil ke publik, dan pengirim menerima notifikasi berisi catatan perbaikan yang harus dilakukan sebelum mengajukan ulang.
