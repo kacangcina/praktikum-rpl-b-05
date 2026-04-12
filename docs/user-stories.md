@@ -1,12 +1,5 @@
 # User Stories & Acceptance Criteria
 
-**Proyek:** Cookbook App  
-**Mata Kuliah:** Rekayasa Perangkat Lunak – Praktikum P2  
-**Program Studi:** Informatika – Universitas Sebelas Maret  
-**Tahun Akademik:** 2025/2026  
-
----
-
 ## Identifikasi Role / Aktor
 
 | No | Role | Deskripsi |
