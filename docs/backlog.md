@@ -58,15 +58,3 @@
 | BL-20 | Aplikasi mobile native (iOS/Android) | Semester ini fokus pada versi web; mobile dapat dikembangkan di iterasi berikutnya |
 
 ---
-
-## Ringkasan Prioritas
-
-| Prioritas | Jumlah Story | Keterangan |
-|---|---|---|
-| Must-have | 6 | Fondasi MVP — login, lihat resep, post resep, moderasi |
-| Should-have | 8 | Fitur pendukung — komentar, rating, filter, live kelas |
-| Could-have | 3 | Peningkatan UX — AI rekomendasi, filter bahan, scale porsi |
-| Won't-have | 3 | Di luar scope semester ini |
-| **Total** | **20** | |
-
----
