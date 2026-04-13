@@ -56,9 +56,3 @@
 | BL-19 | Dukungan multibahasa / ganti bahasa | Aplikasi hanya tersedia dalam Bahasa Indonesia dan ditujukan khusus untuk pengguna di Indonesia |
 
 ---
-
-## Catatan
-
-- Minimal 3 story Must-have sudah terpenuhi (5 story).
-- Story BL-06 (komentar) dan BL-07 (rating/upvote) belum memiliki referensi US — perlu ditambahkan ke `user-stories.md` jika diperlukan.
-- Backlog bersifat dinamis dan dapat diperbarui sepanjang proyek sesuai perkembangan sprint.
