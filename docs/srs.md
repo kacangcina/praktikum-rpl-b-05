@@ -14,15 +14,15 @@ Cubu (Cookbook Application) adalah platform katalog resep digital dan belajar me
 
 | Istilah | Definisi |
 |---|---|
-| SRS | Software Requirements Specification — dokumen spesifikasi kebutuhan perangkat lunak |
-| FR | Functional Requirement — kebutuhan fungsional sistem |
-| NFR | Non-Functional Requirement — kebutuhan non-fungsional sistem |
+| SRS | Software Requirements Specification, dokumen spesifikasi kebutuhan perangkat lunak |
+| FR | Functional Requirement, kebutuhan fungsional sistem |
+| NFR | Non-Functional Requirement, kebutuhan non-fungsional sistem |
 | Guest | Pengguna yang belum login; hanya dapat melihat konten publik |
 | User | Pengguna terdaftar dengan akun gratis |
 | Creator | Chef terverifikasi yang dapat mempublikasikan resep dan mengunggah video |
 | Admin | Pengelola platform yang memverifikasi creator dan mengelola konten |
-| MVP | Minimum Viable Product — versi produk paling dasar yang dapat digunakan |
-| AI | Artificial Intelligence — kecerdasan buatan untuk fitur konsultasi memasak |
+| MVP | Minimum Viable Product, versi produk paling dasar yang dapat digunakan |
+| AI | Artificial Intelligence, kecerdasan buatan untuk fitur konsultasi memasak |
 
 ---
 
