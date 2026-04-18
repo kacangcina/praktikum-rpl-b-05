@@ -155,6 +155,5 @@ NFR-05 (Security): Seluruh komunikasi antara klien dan server harus menggunakan 
 ### Di Luar Lingkup (Out of Scope)
 
 - Fitur notifikasi push pada perangkat mobile native.
-- Sistem rekomendasi resep berbasis AI (direncanakan pada iterasi berikutnya).
 - Dukungan multibahasa selain Bahasa Indonesia.
 - Fitur pembayaran, subscription, dan transaksi komersial.
