@@ -148,7 +148,7 @@ NFR-05 (Security): Seluruh komunikasi antara klien dan server harus menggunakan 
 
 ### Batasan Teknis
 
-- Fitur konsultasi AI bergantung pada ketersediaan dan kebijakan layanan API pihak ketiga yang digunakan.
+- Fitur konsultasi dan rekomendasi AI bergantung pada ketersediaan dan kebijakan layanan API pihak ketiga yang digunakan.
 - Fitur pengunggahan video membutuhkan kapasitas penyimpanan server yang memadai dan dapat meningkat seiring bertambahnya konten.
 - Sistem autentikasi menggunakan verifikasi email sehingga bergantung pada ketersediaan layanan email transaksional.
 
