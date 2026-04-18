@@ -144,7 +144,7 @@ NFR-05 (Security): Seluruh komunikasi antara klien dan server harus menggunakan 
 - Pengguna diasumsikan memiliki akses internet yang memadai untuk menggunakan aplikasi secara penuh.
 - Creator diasumsikan sudah memiliki kemampuan dasar dalam pembuatan video dan penulisan resep sebelum mendaftar sebagai creator.
 - Layanan AI pihak ketiga (API) diasumsikan tersedia dan dapat diakses oleh sistem selama operasional berlangsung.
-- Seluruh konten resep dan video diasumsikan berbahasa Indonesia dan menggunakan bahan-bahan yang tersedia di pasar lokal Indonesia.
+- Seluruh konten resep dan video diasumsikan berbahasa Indonesia dan menggunakan bahan-bahan yang tersedia di sekitar.
 
 ### Batasan Teknis
 
