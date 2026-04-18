@@ -144,17 +144,16 @@ NFR-05 (Security): Seluruh komunikasi antara klien dan server harus menggunakan 
 - Pengguna diasumsikan memiliki akses internet yang memadai untuk menggunakan aplikasi secara penuh.
 - Creator diasumsikan sudah memiliki kemampuan dasar dalam pembuatan video dan penulisan resep sebelum mendaftar sebagai creator.
 - Layanan AI pihak ketiga (API) diasumsikan tersedia dan dapat diakses oleh sistem selama operasional berlangsung.
-- Seluruh konten resep dan video diasumsikan berbahasa Indonesia dan menggunakan bahan-bahan yang tersedia di pasar lokal Indonesia.
+- Seluruh konten resep dan video diasumsikan berbahasa Indonesia dan menggunakan bahan-bahan yang tersedia di sekitar.
 
 ### Batasan Teknis
 
-- Fitur konsultasi AI bergantung pada ketersediaan dan kebijakan layanan API pihak ketiga yang digunakan.
+- Fitur konsultasi dan rekomendasi AI bergantung pada ketersediaan dan kebijakan layanan API pihak ketiga yang digunakan.
 - Fitur pengunggahan video membutuhkan kapasitas penyimpanan server yang memadai dan dapat meningkat seiring bertambahnya konten.
 - Sistem autentikasi menggunakan verifikasi email sehingga bergantung pada ketersediaan layanan email transaksional.
 
 ### Di Luar Lingkup (Out of Scope)
 
 - Fitur notifikasi push pada perangkat mobile native.
-- Sistem rekomendasi resep berbasis AI (direncanakan pada iterasi berikutnya).
 - Dukungan multibahasa selain Bahasa Indonesia.
 - Fitur pembayaran, subscription, dan transaksi komersial.
