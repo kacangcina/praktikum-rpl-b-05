@@ -50,9 +50,9 @@
 
 | ID | Fitur | Alasan |
 |---|---|---|
-| BL-16 | Pemesanan katering online | Di luar scope aplikasi; platform difokuskan untuk belajar memasak, bukan transaksi jual beli |
-| BL-17 | Fitur pembayaran / subscription berbayar | Kompleksitas integrasi payment gateway di luar cakupan semester ini |
-| BL-18 | Aplikasi mobile native (iOS/Android) | Semester ini fokus pada versi web; mobile dapat dikembangkan di iterasi berikutnya |
-| BL-19 | Dukungan multibahasa / ganti bahasa | Aplikasi hanya tersedia dalam Bahasa Indonesia dan ditujukan khusus untuk user di Indonesia |
+| BL-15 | Pemesanan katering online | Di luar scope aplikasi; platform difokuskan untuk belajar memasak, bukan transaksi jual beli |
+| BL-16 | Fitur pembayaran / subscription berbayar | Kompleksitas integrasi payment gateway di luar cakupan semester ini |
+| BL-17 | Aplikasi mobile native (iOS/Android) | Semester ini fokus pada versi web; mobile dapat dikembangkan di iterasi berikutnya |
+| BL-18 | Dukungan multibahasa / ganti bahasa | Aplikasi hanya tersedia dalam Bahasa Indonesia dan ditujukan khusus untuk user di Indonesia |
 
 ---
