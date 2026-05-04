@@ -1,7 +1,5 @@
-## Problem Statement
+# Problem Statement
 
-Masyarakat Indonesia yang ingin belajar memasak secara mandiri mengalami kesulitan menemukan panduan resep yang terstruktur, relevan dengan bahan lokal, dan dilengkapi dengan media pembelajaran interaktif ketika mereka ingin  memulai atau meningkatkan kemampuan memasak mereka. Hal ini menyebabkan proses belajar memasak menjadi tidak terarah, mudah menyerah di tengah jalan, dan tidak ada wadah untuk belajar langsung dari chef berpengalaman secara digital. 
+Masyarakat Indonesia yang baru belajar memasak mengalami kesulitan menemukan panduan resep yang terstruktur dan relevan dengan bahan lokal ketika mereka ingin memulai atau meningkatkan kemampuan memasak di rumah secara mandiri. Hal ini menyebabkan proses belajar memasak menjadi tidak terarah, tidak ada referensi terpercaya yang dapat diikuti secara bertahap, serta minimnya konten pembelajaran memasak lokal yang berkualitas dan mudah diakses secara digital.
 
-Solusi berupa aplikasi cookbook berbasis web dan mobile diharapkan dapat menyediakan platform belajar memasak terpadu yang menghubungkan pengguna dengan resep lokal yang terstruktur serta fasilitas kelas memasak live dari chef terverifikasi.
-
----
+Solusi berupa aplikasi cookbook berbasis web dan mobile diharapkan dapat menyediakan platform belajar memasak terpadu yang menghubungkan pengguna dengan resep lokal yang terstruktur dan video kelas memasak dari chef terverifikasi, sehingga siapa pun dapat belajar memasak secara mandiri dengan panduan yang jelas, bertahap, dan sesuai dengan bahan yang tersedia di Indonesia.
