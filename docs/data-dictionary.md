@@ -1,4 +1,4 @@
-# Data Dictionary — Cubu
+# Data Dictionary 
 
 ## Tabel: users
 
