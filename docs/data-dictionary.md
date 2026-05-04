@@ -139,19 +139,6 @@
 | reviewed_at | TIMESTAMP | NULL | Waktu admin meninjau pengajuan |
 
 ---
-
-## Ringkasan Relasi Antar Tabel
-
-| Tabel Asal | Tabel Tujuan | Kardinalitas | Foreign Key | Keterangan |
-|---|---|---|---|---|
-| users | recipes | 1:N | recipes.user_id | Satu user dapat membuat banyak resep |
-| users | collections | 1:N | collections.user_id | Satu user dapat memiliki banyak koleksi |
-| users | videos | 1:N | videos.user_id | Satu creator dapat mengunggah banyak video |
-| users | comments | 1:N | comments.user_id | Satu user dapat menulis banyak komentar |
-| users | ratings | 1:N | ratings.user_id | Satu user dapat memberi rating ke banyak resep |
-| users | creator_verifications | 1:1 | creator_verifications.user_id | Satu user mengajukan satu permohonan verifikasi |
-| recipes | recipe_tools | 1:N | recipe_tools.recipe_id | Satu resep memiliki banyak alat masak |
-| recipes | recipe_ingredients | 1:N | recipe_ingredients.recipe_id | Satu resep memiliki banyak bahan |
 | recipes | recipe_steps | 1:N | recipe_steps.recipe_id | Satu resep memiliki banyak langkah memasak |
 | recipes | comments | 1:N | comments.recipe_id | Satu resep dapat menerima banyak komentar |
 | recipes | ratings | 1:N | ratings.recipe_id | Satu resep dapat menerima banyak rating |
