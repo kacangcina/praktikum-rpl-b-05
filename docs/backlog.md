@@ -43,7 +43,6 @@
 | BL-12 | Sebagai user, saya ingin berkonsultasi dengan AI mengenai masalah yang saya alami saat memasak, agar saya dapat memahami penyebab dan memperbaiki hasil masakan saya secara mandiri | User | US-07 |
 | BL-13 | Sebagai user, saya ingin mendapatkan rekomendasi resep berbasis AI berdasarkan riwayat resep yang saya lihat, agar saya bisa menemukan resep baru yang sesuai selera tanpa mencari manual | User | — |
 | BL-14 | Sebagai user, saya ingin memfilter resep berdasarkan bahan makanan yang tersedia di rumah, agar saya tidak perlu membeli bahan tambahan untuk memasak | User | — |
-| BL-15 | Sebagai user, saya ingin mengubah jumlah porsi resep secara otomatis, agar takaran bahan terhitung ulang tanpa saya harus menghitung manual | User | — |
 
 ---
 
