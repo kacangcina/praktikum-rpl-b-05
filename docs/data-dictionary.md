@@ -139,8 +139,3 @@
 | reviewed_at | TIMESTAMP | NULL | Waktu admin meninjau pengajuan |
 
 ---
-| recipes | recipe_steps | 1:N | recipe_steps.recipe_id | Satu resep memiliki banyak langkah memasak |
-| recipes | comments | 1:N | comments.recipe_id | Satu resep dapat menerima banyak komentar |
-| recipes | ratings | 1:N | ratings.recipe_id | Satu resep dapat menerima banyak rating |
-| recipes | collection_items | M:N | collection_items (junction table) | Satu resep dapat disimpan di banyak koleksi |
-| collections | collection_items | 1:N | collection_items.collection_id | Satu koleksi dapat berisi banyak resep |
