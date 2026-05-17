@@ -3,11 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 
-// =====================================================================
-// PLACEHOLDER TEMPORER (Biar tidak error 'Failed to resolve import')
-// Halaman di bawah ini sengaja dibuat di sini dulu agar kamu tidak perlu
-// membuat file fisiknya di folder src/pages/ malam ini.
-// =====================================================================
 const Collection = () => (
   <div className="max-w-7xl mx-auto px-6 py-20 text-center">
     <h1 className="text-3xl font-extrabold text-gray-800 dark:text-white mb-2">Halaman Koleksi Saya</h1>
