@@ -23,9 +23,9 @@ class CollectionFlowTest extends TestCase
         $this->assertDatabaseHas('collection_items', ['recipe_id' => $recipe->id]);
 
         $this->actingAs($user)
-            ->get(route('collections.index'))
+            ->getJson('/api/collection')
             ->assertOk()
-            ->assertSee($recipe->title);
+            ->assertJsonFragment(['title' => $recipe->title]);
 
         $this->actingAs($user)
             ->delete(route('collections.destroy', $recipe))

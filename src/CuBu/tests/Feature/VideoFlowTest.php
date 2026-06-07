@@ -26,7 +26,7 @@ class VideoFlowTest extends TestCase
 
     public function test_verified_creator_can_upload_mp4_video(): void
     {
-        Storage::fake('public');
+        Storage::fake('local');
         $creator = User::factory()->create([
             'role' => 'creator',
             'is_verified' => true,
@@ -45,7 +45,7 @@ class VideoFlowTest extends TestCase
         $response->assertRedirect(route('recipes.show', $recipe));
         $this->assertSame($creator->id, $video->user_id);
         $this->assertSame($recipe->id, $video->recipe_id);
-        Storage::disk('public')->assertExists($video->file_path);
+        Storage::disk('local')->assertExists($video->file_path);
     }
 
     public function test_creator_cannot_attach_video_to_another_users_recipe(): void
@@ -59,6 +59,66 @@ class VideoFlowTest extends TestCase
         $this->actingAs($creator)
             ->get(route('recipes.video.create', $recipe))
             ->assertForbidden();
+    }
+
+    public function test_creator_can_attach_video_to_photo_recipe(): void
+    {
+        Storage::fake('local');
+        $creator = User::factory()->create([
+            'role' => 'creator',
+            'is_verified' => true,
+        ]);
+        $recipe = $this->createRecipe($creator);
+        $recipe->update(['thumbnail' => 'recipe-thumbnails/resep.jpg']);
+
+        $this->actingAs($creator)
+            ->get(route('recipes.video.create', $recipe))
+            ->assertOk();
+
+        $this->actingAs($creator)
+            ->post(route('recipes.video.store', $recipe), [
+                'title' => 'Video untuk resep foto',
+                'difficulty' => 'mudah',
+                'video' => UploadedFile::fake()->create('foto-video.mp4', 100, 'video/mp4'),
+            ])
+            ->assertRedirect(route('recipes.show', $recipe));
+
+        $this->assertSame('recipe-thumbnails/resep.jpg', $recipe->fresh()->thumbnail);
+        $this->assertNotNull($recipe->fresh()->video);
+    }
+
+    public function test_guest_cannot_access_video_file_route(): void
+    {
+        $creator = User::factory()->create([
+            'role' => 'creator',
+            'is_verified' => true,
+        ]);
+        $recipe = $this->createRecipe($creator);
+
+        $this->get(route('recipes.video.watch', $recipe))
+            ->assertRedirect(route('login'));
+    }
+
+    public function test_authenticated_user_can_access_video_file_route(): void
+    {
+        Storage::fake('local');
+        $creator = User::factory()->create([
+            'role' => 'creator',
+            'is_verified' => true,
+        ]);
+        $viewer = User::factory()->create();
+        $recipe = $this->createRecipe($creator);
+        $video = $recipe->video()->create([
+            'user_id' => $creator->id,
+            'title' => 'Video Aman',
+            'difficulty' => 'mudah',
+            'file_path' => 'cooking-videos/aman.mp4',
+        ]);
+        Storage::disk('local')->put($video->file_path, 'video');
+
+        $this->actingAs($viewer)
+            ->get(route('recipes.video.watch', $recipe))
+            ->assertOk();
     }
 
     public function test_creator_can_edit_video_metadata_without_uploading_file_again(): void

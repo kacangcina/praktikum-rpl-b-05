@@ -2,39 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class ProfileController extends Controller
 {
-    public function me(Request $request)
-    {
-        return redirect()->route('profile.show', $request->user());
-    }
-
-    public function show(User $user)
-    {
-        $user->load('latestCreatorVerification');
-
-        $recipes = $user->recipes()
-            ->with(['ingredients', 'video'])
-            ->latest('published_at')
-            ->paginate(9);
-
-        $notifications = auth()->id() === $user->id
-            ? $user->notifications()->latest()->limit(5)->get()
-            : collect();
-
-        return view('profiles.show', compact('user', 'recipes', 'notifications'));
-    }
-
-    public function edit(Request $request)
-    {
-        return view('profiles.edit', ['user' => $request->user()]);
-    }
-
     public function update(Request $request)
     {
         $user = $request->user();
@@ -65,6 +38,10 @@ class ProfileController extends Controller
         }
 
         $user->update($validated);
+
+        if ($request->expectsJson()) {
+            return response()->json(['message' => 'Profil berhasil diperbarui.', 'user_id' => $user->id]);
+        }
 
         return redirect()
             ->route('profile.show', $user)

@@ -10,6 +10,10 @@ class NotificationController extends Controller
     {
         $request->user()->unreadNotifications->markAsRead();
 
+        if ($request->expectsJson()) {
+            return response()->json(['message' => 'Notifikasi ditandai sudah dibaca.']);
+        }
+
         return back();
     }
 }

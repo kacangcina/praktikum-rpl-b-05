@@ -9,11 +9,6 @@ use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
 {
-    public function showRegister()
-    {
-        return view('auth.register');
-    }
-
     public function register(Request $request)
     {
         $validated = $request->validate([
@@ -36,14 +31,13 @@ class AuthController extends Controller
 
         Auth::login($user);
 
+        if ($request->expectsJson()) {
+            return response()->json(['message' => 'Akun berhasil dibuat.', 'user_id' => $user->id], 201);
+        }
+
         return redirect()
             ->route('profile.me')
             ->with('status', 'Akun berhasil dibuat. Kamu sudah bisa membuat resep.');
-    }
-
-    public function showLogin()
-    {
-        return view('auth.login');
     }
 
     public function login(Request $request)
@@ -61,6 +55,10 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
+        if ($request->expectsJson()) {
+            return response()->json(['message' => 'Berhasil masuk.']);
+        }
+
         return redirect()->intended(route('recipes.index'));
     }
 
@@ -70,6 +68,10 @@ class AuthController extends Controller
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
+        if ($request->expectsJson()) {
+            return response()->json(['message' => 'Berhasil keluar.']);
+        }
 
         return redirect()->route('recipes.index');
     }

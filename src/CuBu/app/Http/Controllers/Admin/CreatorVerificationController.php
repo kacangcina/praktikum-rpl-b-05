@@ -10,35 +10,6 @@ use Illuminate\Support\Facades\DB;
 
 class CreatorVerificationController extends Controller
 {
-    public function index(Request $request)
-    {
-        $this->authorizeAdmin($request);
-
-        $status = $request->query('status', 'pending');
-        $allowedStatuses = ['pending', 'approved', 'rejected'];
-        $status = in_array($status, $allowedStatuses, true) ? $status : 'pending';
-
-        $verifications = CreatorVerification::with('user')
-            ->where('status', $status)
-            ->latest('submitted_at')
-            ->paginate(15)
-            ->withQueryString();
-
-        $counts = CreatorVerification::selectRaw('status, count(*) as total')
-            ->groupBy('status')
-            ->pluck('total', 'status');
-
-        return view('admin.creator-verifications.index', compact('verifications', 'status', 'counts'));
-    }
-
-    public function show(Request $request, CreatorVerification $verification)
-    {
-        $this->authorizeAdmin($request);
-        $verification->load(['user', 'reviewer']);
-
-        return view('admin.creator-verifications.show', compact('verification'));
-    }
-
     public function approve(Request $request, CreatorVerification $verification)
     {
         $this->authorizeAdmin($request);
@@ -59,6 +30,10 @@ class CreatorVerificationController extends Controller
 
             $verification->user->notify(new CreatorVerificationReviewed($verification));
         });
+
+        if ($request->expectsJson()) {
+            return response()->json(['message' => 'Pengajuan creator disetujui.']);
+        }
 
         return redirect()
             ->route('admin.creator-verifications.index')
@@ -91,6 +66,10 @@ class CreatorVerificationController extends Controller
 
             $verification->user->notify(new CreatorVerificationReviewed($verification));
         });
+
+        if ($request->expectsJson()) {
+            return response()->json(['message' => 'Pengajuan creator ditolak.']);
+        }
 
         return redirect()
             ->route('admin.creator-verifications.index')

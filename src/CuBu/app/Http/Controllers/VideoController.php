@@ -9,14 +9,6 @@ use Illuminate\Validation\Rule;
 
 class VideoController extends Controller
 {
-    public function create(Request $request, Recipe $recipe)
-    {
-        $this->authorizeRecipeVideo($request, $recipe);
-        $recipe->load('video');
-
-        return view('videos.create', compact('recipe'));
-    }
-
     public function store(Request $request, Recipe $recipe)
     {
         $this->authorizeRecipeVideo($request, $recipe);
@@ -43,6 +35,7 @@ class VideoController extends Controller
         $video = $recipe->video;
 
         if ($video && $videoFile) {
+            Storage::disk('local')->delete($video->file_path);
             Storage::disk('public')->delete($video->file_path);
         }
 
@@ -54,7 +47,7 @@ class VideoController extends Controller
         ];
 
         if ($videoFile) {
-            $attributes['file_path'] = $videoFile->store('cooking-videos', 'public');
+            $attributes['file_path'] = $videoFile->store('cooking-videos', 'local');
         }
 
         if ($video) {
@@ -63,9 +56,26 @@ class VideoController extends Controller
             $recipe->video()->create($attributes);
         }
 
+        if ($request->expectsJson()) {
+            return response()->json(['message' => 'Video resep berhasil dipublikasikan.']);
+        }
+
         return redirect()
             ->route('recipes.show', $recipe)
             ->with('status', 'Video resep berhasil dipublikasikan.');
+    }
+
+    public function watch(Recipe $recipe)
+    {
+        $video = $recipe->video()->firstOrFail();
+
+        foreach (['local', 'public'] as $disk) {
+            if (Storage::disk($disk)->exists($video->file_path)) {
+                return Storage::disk($disk)->response($video->file_path);
+            }
+        }
+
+        abort(404);
     }
 
     private function authorizeRecipeVideo(Request $request, Recipe $recipe): void

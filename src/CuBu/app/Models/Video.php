@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 
 #[Fillable(['user_id', 'recipe_id', 'title', 'description', 'difficulty', 'file_path'])]
 class Video extends Model
@@ -21,6 +20,6 @@ class Video extends Model
 
     public function getFileUrlAttribute(): string
     {
-        return Storage::url($this->file_path);
+        return route('recipes.video.watch', $this->recipe_id);
     }
 }

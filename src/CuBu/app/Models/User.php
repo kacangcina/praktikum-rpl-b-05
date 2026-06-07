@@ -56,6 +56,23 @@ class User extends Authenticatable
         return $this->hasMany(Collection::class);
     }
 
+    public function following()
+    {
+        return $this->belongsToMany(User::class, 'user_follows', 'follower_id', 'followed_id')
+            ->withTimestamps();
+    }
+
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'user_follows', 'followed_id', 'follower_id')
+            ->withTimestamps();
+    }
+
+    public function recipeReviews()
+    {
+        return $this->hasMany(RecipeReview::class);
+    }
+
     public function canPublishRecipes(): bool
     {
         return $this->role === 'user'

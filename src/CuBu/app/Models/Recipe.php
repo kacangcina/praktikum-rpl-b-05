@@ -42,6 +42,18 @@ class Recipe extends Model
         return $this->hasOne(Video::class);
     }
 
+    public function collections()
+    {
+        return $this->belongsToMany(Collection::class, 'collection_items')
+            ->withPivot('saved_at')
+            ->withTimestamps();
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(RecipeReview::class);
+    }
+
     public function getThumbnailUrlAttribute(): ?string
     {
         if (! $this->thumbnail) {

@@ -59,13 +59,9 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## Ikon UI
 
-Proyek memakai [Lucide Icons](https://lucide.dev/) dari dependency npm `lucide`.
-
-1. Tambahkan nama ikon dan import-nya di `resources/js/app.js`.
-2. Pakai ikon di Blade dengan format `<i data-lucide="nama-icon"></i>`.
-3. Jalankan `npm install` setelah pull perubahan dependency, lalu `npm run dev` atau `npm run build`.
-
-Dengan pola ini, tim tidak perlu mengirim atau menyimpan file SVG ikon satu per satu.
+Frontend React memakai [Lucide React](https://lucide.dev/guide/packages/lucide-react)
+melalui dependency `lucide-react`. Import ikon langsung di komponen React yang
+menggunakannya, lalu jalankan `npm install` setelah pull perubahan dependency.
 
 ## Akun Development
 

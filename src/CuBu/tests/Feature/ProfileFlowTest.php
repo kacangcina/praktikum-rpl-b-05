@@ -25,11 +25,11 @@ class ProfileFlowTest extends TestCase
             'published_at' => now(),
         ]);
 
-        $this->get(route('profile.show', $user))
+        $this->getJson('/api/profiles/'.$user->id)
             ->assertOk()
-            ->assertSee($user->username)
-            ->assertSee('Suka masakan rumahan.')
-            ->assertSee('Sayur Asem');
+            ->assertJsonFragment(['username' => $user->username])
+            ->assertJsonFragment(['bio' => 'Suka masakan rumahan.'])
+            ->assertJsonFragment(['title' => 'Sayur Asem']);
     }
 
     public function test_user_can_update_profile_and_avatar(): void
@@ -77,11 +77,10 @@ class ProfileFlowTest extends TestCase
         $user = User::factory()->create(['role' => 'user']);
 
         $this->actingAs($user)
-            ->get(route('profile.show', $user))
+            ->getJson('/api/profiles/'.$user->id)
             ->assertOk()
-            ->assertSee('Ajukan verifikasi creator')
-            ->assertSee(route('creator.apply'))
-            ->assertDontSee('data-lucide="chef-hat"', false);
+            ->assertJsonPath('profile.role', 'user')
+            ->assertJsonPath('profile.can_upload_videos', false);
     }
 
     public function test_admin_profile_shows_admin_status_without_recipe_section(): void
@@ -92,12 +91,10 @@ class ProfileFlowTest extends TestCase
         ]);
 
         $this->actingAs($admin)
-            ->get(route('profile.show', $admin))
+            ->getJson('/api/profiles/'.$admin->id)
             ->assertOk()
-            ->assertSee('Admin')
-            ->assertSee('Buka dashboard admin')
-            ->assertDontSee('Karya dapur')
-            ->assertDontSee('Buat resep');
+            ->assertJsonPath('profile.role_label', 'Admin')
+            ->assertJsonPath('profile.is_admin', true);
     }
 
     public function test_verified_creator_profile_shows_video_controls_without_apply_button(): void
@@ -116,12 +113,55 @@ class ProfileFlowTest extends TestCase
         ]);
 
         $this->actingAs($creator)
-            ->get(route('profile.show', $creator))
+            ->getJson('/api/profiles/'.$creator->id)
             ->assertOk()
-            ->assertSee('data-lucide="chef-hat"', false)
-            ->assertSee('Creator terverifikasi')
-            ->assertDontSee('Akun creator aktif')
-            ->assertSee('Tambah video')
-            ->assertDontSee('Ajukan verifikasi creator');
+            ->assertJsonPath('profile.role_label', 'Creator')
+            ->assertJsonPath('profile.can_upload_videos', true);
+    }
+
+    public function test_photo_recipe_does_not_offer_video_upload(): void
+    {
+        $creator = User::factory()->create([
+            'role' => 'creator',
+            'is_verified' => true,
+        ]);
+        Recipe::create([
+            'user_id' => $creator->id,
+            'title' => 'Ayam Foto',
+            'description' => 'Resep dengan media foto.',
+            'difficulty' => 'mudah',
+            'estimated_time' => 30,
+            'thumbnail' => 'recipe-thumbnails/ayam.jpg',
+            'published_at' => now(),
+        ]);
+
+        $this->actingAs($creator)
+            ->getJson('/api/profiles/'.$creator->id)
+            ->assertOk()
+            ->assertJsonPath('recipes.0.thumbnail_url', '/storage/recipe-thumbnails/ayam.jpg');
+    }
+
+    public function test_user_can_follow_and_unfollow_another_profile(): void
+    {
+        $follower = User::factory()->create();
+        $followed = User::factory()->create();
+
+        $this->actingAs($follower)
+            ->postJson('/api/profiles/'.$followed->id.'/follow')
+            ->assertOk();
+
+        $this->actingAs($follower)
+            ->getJson('/api/profiles/'.$followed->id)
+            ->assertJsonPath('followers_count', 1)
+            ->assertJsonPath('is_following', true);
+
+        $this->actingAs($follower)
+            ->deleteJson('/api/profiles/'.$followed->id.'/follow')
+            ->assertOk();
+
+        $this->assertDatabaseMissing('user_follows', [
+            'follower_id' => $follower->id,
+            'followed_id' => $followed->id,
+        ]);
     }
 }

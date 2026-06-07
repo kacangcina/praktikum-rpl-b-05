@@ -18,21 +18,68 @@ class RecipeFlowTest extends TestCase
     {
         $recipe = $this->createRecipe();
 
-        $this->get(route('recipes.show', $recipe))
+        $this->getJson('/api/recipes/'.$recipe->id)
             ->assertOk()
-            ->assertSee('Soto Ayam')
-            ->assertSee('Ayam kampung')
-            ->assertSee('Rebus ayam');
+            ->assertJsonFragment(['title' => 'Soto Ayam'])
+            ->assertJsonFragment(['name' => 'Ayam kampung'])
+            ->assertJsonFragment(['title' => 'Rebus ayam']);
+    }
+
+    public function test_guest_cannot_watch_recipe_video(): void
+    {
+        $recipe = $this->createRecipe();
+        $recipe->video()->create([
+            'user_id' => $recipe->user_id,
+            'title' => 'Video Soto',
+            'difficulty' => 'sedang',
+            'file_path' => 'cooking-videos/soto.mp4',
+        ]);
+
+        $this->getJson('/api/recipes/'.$recipe->id)
+            ->assertOk()
+            ->assertJsonPath('recipe.video.title', 'Video Soto');
+    }
+
+    public function test_verified_creator_can_upload_photo_and_video_together(): void
+    {
+        Storage::fake('local');
+        Storage::fake('public');
+        $creator = User::factory()->create([
+            'role' => 'creator',
+            'is_verified' => true,
+        ]);
+
+        $this->actingAs($creator)->post(route('recipes.store'), [
+            'title' => 'Resep Dua Media',
+            'description' => 'Foto menjadi poster dan video tetap dapat diputar.',
+            'difficulty' => 'mudah',
+            'estimated_time' => 20,
+            'thumbnail' => UploadedFile::fake()->createWithContent(
+                'foto.png',
+                base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII='),
+            ),
+            'video' => UploadedFile::fake()->create('video.mp4', 100, 'video/mp4'),
+            'tools' => ['Wajan'],
+            'ingredient_names' => ['Nasi'],
+            'ingredient_quantities' => ['1 piring'],
+            'step_titles' => ['Masak'],
+            'steps' => ['Masak hingga matang.'],
+        ])->assertRedirect();
+
+        $recipe = Recipe::where('title', 'Resep Dua Media')->firstOrFail();
+        $this->assertNotNull($recipe->thumbnail);
+        $this->assertNotNull($recipe->video);
+        Storage::disk('public')->assertExists($recipe->thumbnail);
+        Storage::disk('local')->assertExists($recipe->video->file_path);
     }
 
     public function test_latest_recipe_is_displayed_as_highlighted_recipe(): void
     {
         $this->createRecipe();
 
-        $this->get(route('recipes.index'))
+        $this->getJson('/api/recipes')
             ->assertOk()
-            ->assertSee('Highlighted recipe')
-            ->assertSee('Soto Ayam');
+            ->assertJsonPath('featured.title', 'Soto Ayam');
     }
 
     public function test_recipes_can_be_searched_by_ingredient(): void
@@ -43,9 +90,35 @@ class RecipeFlowTest extends TestCase
             'quantity' => '2 batang',
         ]);
 
-        $this->get(route('recipes.index', ['q' => 'Serai']))
+        $this->getJson('/api/recipes?q=Serai')
             ->assertOk()
-            ->assertSee('Soto Ayam');
+            ->assertJsonFragment(['title' => 'Soto Ayam']);
+    }
+
+    public function test_recipes_can_be_sorted_by_collection_popularity(): void
+    {
+        $olderPopularRecipe = $this->createRecipe();
+        $olderPopularRecipe->update([
+            'title' => 'Resep Populer',
+            'published_at' => now()->subDay(),
+        ]);
+
+        $newerRecipe = $this->createRecipe();
+        $newerRecipe->update([
+            'title' => 'Resep Terbaru',
+            'published_at' => now(),
+        ]);
+
+        User::factory()->create()
+            ->collections()
+            ->create(['name' => 'Favorit'])
+            ->recipes()
+            ->attach($olderPopularRecipe, ['saved_at' => now()]);
+
+        $this->getJson('/api/recipes?sort=popular')
+            ->assertOk()
+            ->assertJsonPath('sort', 'popular')
+            ->assertJsonPath('recipes.0.title', 'Resep Populer');
     }
 
     public function test_regular_user_can_publish_a_complete_photo_recipe(): void
@@ -85,12 +158,12 @@ class RecipeFlowTest extends TestCase
         $this->actingAs($user)
             ->get(route('recipes.create'))
             ->assertOk()
-            ->assertDontSee('Unggah video memasak');
+            ->assertSee('id="root"', false);
     }
 
     public function test_verified_creator_can_upload_video_while_creating_recipe(): void
     {
-        Storage::fake('public');
+        Storage::fake('local');
         $creator = User::factory()->create([
             'role' => 'creator',
             'is_verified' => true,
@@ -99,7 +172,7 @@ class RecipeFlowTest extends TestCase
         $this->actingAs($creator)
             ->get(route('recipes.create'))
             ->assertOk()
-            ->assertSee('Unggah video memasak');
+            ->assertSee('id="root"', false);
 
         $response = $this->actingAs($creator)->post(route('recipes.store'), [
             'title' => 'Nasi Goreng Creator',
@@ -119,7 +192,7 @@ class RecipeFlowTest extends TestCase
 
         $response->assertRedirect(route('recipes.show', $recipe));
         $this->assertSame($creator->id, $video->user_id);
-        Storage::disk('public')->assertExists($video->file_path);
+        Storage::disk('local')->assertExists($video->file_path);
     }
 
     public function test_regular_user_cannot_force_video_upload_when_creating_recipe(): void
@@ -211,6 +284,107 @@ class RecipeFlowTest extends TestCase
             ->assertForbidden();
 
         $this->assertDatabaseHas('recipes', ['id' => $recipe->id]);
+    }
+
+    public function test_owner_can_edit_recipe_without_losing_existing_media(): void
+    {
+        Storage::fake('local');
+        Storage::fake('public');
+        $owner = User::factory()->create([
+            'role' => 'creator',
+            'is_verified' => true,
+        ]);
+        $recipe = $this->createRecipe($owner);
+        $recipe->update(['thumbnail' => 'recipe-thumbnails/soto-lama.jpg']);
+        Storage::disk('public')->put($recipe->thumbnail, 'foto');
+        $video = $recipe->video()->create([
+            'user_id' => $owner->id,
+            'title' => $recipe->title,
+            'description' => $recipe->description,
+            'difficulty' => $recipe->difficulty,
+            'file_path' => 'cooking-videos/soto-lama.mp4',
+        ]);
+        Storage::disk('local')->put($video->file_path, 'video');
+
+        $this->actingAs($owner)
+            ->putJson('/api/recipes/'.$recipe->id, [
+                'title' => 'Soto Ayam Spesial',
+                'description' => 'Kuah kuning yang sudah diperbarui.',
+                'difficulty' => 'mudah',
+                'estimated_time' => 45,
+                'tools' => ['Panci besar', 'Sendok sayur'],
+                'ingredient_names' => ['Ayam', 'Kunyit'],
+                'ingredient_quantities' => ['500 gram', '2 ruas'],
+                'step_titles' => ['Rebus ayam', 'Masukkan bumbu'],
+                'steps' => ['Rebus sampai empuk.', 'Masak sampai bumbu meresap.'],
+            ])
+            ->assertOk()
+            ->assertJsonPath('recipe_id', $recipe->id);
+
+        $recipe->refresh();
+        $video->refresh();
+
+        $this->assertSame('Soto Ayam Spesial', $recipe->title);
+        $this->assertSame('recipe-thumbnails/soto-lama.jpg', $recipe->thumbnail);
+        $this->assertSame('cooking-videos/soto-lama.mp4', $video->file_path);
+        $this->assertSame('Soto Ayam Spesial', $video->title);
+        $this->assertCount(2, $recipe->tools);
+        $this->assertCount(2, $recipe->ingredients);
+        $this->assertCount(2, $recipe->steps);
+        Storage::disk('public')->assertExists($recipe->thumbnail);
+        Storage::disk('local')->assertExists($video->file_path);
+    }
+
+    public function test_user_cannot_edit_another_users_recipe(): void
+    {
+        $owner = User::factory()->create();
+        $otherUser = User::factory()->create();
+        $recipe = $this->createRecipe($owner);
+
+        $this->actingAs($otherUser)
+            ->putJson('/api/recipes/'.$recipe->id, [
+                'title' => 'Resep Diambil Alih',
+            ])
+            ->assertForbidden();
+
+        $this->assertSame('Soto Ayam', $recipe->fresh()->title);
+    }
+
+    public function test_authenticated_user_can_create_and_update_recipe_review(): void
+    {
+        $recipe = $this->createRecipe();
+        $reviewer = User::factory()->create();
+
+        $this->actingAs($reviewer)
+            ->postJson('/api/recipes/'.$recipe->id.'/reviews', [
+                'rating' => 4,
+                'comment' => 'Enak dan mudah diikuti.',
+            ])
+            ->assertOk();
+
+        $this->actingAs($reviewer)
+            ->postJson('/api/recipes/'.$recipe->id.'/reviews', [
+                'rating' => 5,
+                'comment' => 'Setelah dicoba lagi hasilnya lebih enak.',
+            ])
+            ->assertOk();
+
+        $this->assertDatabaseCount('recipe_reviews', 1);
+        $this->assertDatabaseHas('recipe_reviews', [
+            'recipe_id' => $recipe->id,
+            'user_id' => $reviewer->id,
+            'rating' => 5,
+        ]);
+    }
+
+    public function test_guest_cannot_create_recipe_review(): void
+    {
+        $recipe = $this->createRecipe();
+
+        $this->postJson('/api/recipes/'.$recipe->id.'/reviews', [
+            'rating' => 5,
+            'comment' => 'Tidak boleh tersimpan.',
+        ])->assertUnauthorized();
     }
 
     private function createRecipe(?User $user = null): Recipe

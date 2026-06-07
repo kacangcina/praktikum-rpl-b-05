@@ -8,13 +8,6 @@ use Illuminate\Support\Facades\Storage;
 
 class CreatorVerificationController extends Controller
 {
-    public function create(Request $request)
-    {
-        $latestVerification = $request->user()->latestCreatorVerification;
-
-        return view('creator-verifications.create', compact('latestVerification'));
-    }
-
     public function store(Request $request)
     {
         $user = $request->user();
@@ -46,6 +39,10 @@ class CreatorVerificationController extends Controller
             'status' => 'pending',
             'submitted_at' => now(),
         ]);
+
+        if ($request->expectsJson()) {
+            return response()->json(['message' => 'Pengajuan creator berhasil dikirim.'], 201);
+        }
 
         return redirect()
             ->route('profile.me')
