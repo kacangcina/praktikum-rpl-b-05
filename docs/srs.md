@@ -117,7 +117,7 @@ Prioritas: Medium | Ref: US-10
 
 ## 4. Kebutuhan Non-Fungsional
 
-NFR-01 (Performance): Halaman utama dan halaman daftar resep dapat dimuat dengan waktu respons yang wajar pada browser modern selama pengujian lokal.
+NFR-01 (Performance): Halaman utama dan halaman daftar resep harus dapat dimuat sepenuhnya oleh browser tanpa memicu error timeout pada server lokal selama proses pengujian.
 
 ---
 
@@ -127,9 +127,6 @@ NFR-02 (Security): Kata sandi pengguna harus disimpan dalam bentuk hash dan tida
 
 NFR-03 (Usability): Antarmuka aplikasi harus responsif dan dapat digunakan pada perangkat desktop maupun smartphone.
 
----
-
-NFR-04 (Reliability): Sistem harus tersedia minimal 99% waktu dalam sebulan, yang setara dengan maksimal downtime 7 jam per bulan, diukur menggunakan layanan monitoring uptime.
 
 ---
 
