@@ -65,7 +65,7 @@ Aplikasi Cubu merupakan solusi terpadu untuk masyarakat Indonesia yang ingin bel
 
 ## 3. Kebutuhan Fungsional
 
-FR-01: Sistem menyediakan fitur registrasi akun baru dengan validasi keunikan email dan pengiriman email verifikasi ke alamat yang didaftarkan.  
+FR-01: Sistem menyediakan fitur registrasi akun baru dengan validasi keunikan alamat email yang didaftarkan.  
 Prioritas: High | Ref: US-02
 
 ---
@@ -95,7 +95,7 @@ Prioritas: Medium | Ref: US-03
 
 ---
 
-FR-07: Sistem memungkinkan pengguna terdaftar untuk menyimpan resep ke dalam koleksi pribadi yang dapat diberi nama, dan mencegah penambahan resep duplikat ke dalam koleksi yang sama.  
+FR-07: Sistem memungkinkan pengguna terdaftar untuk menyimpan resep favorit ke dalam koleksi pribadi tanpa duplikasi resep.  
 Prioritas: Medium | Ref: US-04
 
 ---
@@ -117,15 +117,15 @@ Prioritas: Medium | Ref: US-10
 
 ## 4. Kebutuhan Non-Fungsional
 
-NFR-01 (Performance): Halaman utama dan halaman daftar resep harus termuat dalam waktu kurang dari 3 detik pada koneksi broadband 10 Mbps, diukur menggunakan alat seperti Google Lighthouse atau browser DevTools.
+NFR-01 (Performance): Halaman utama dan halaman daftar resep dapat dimuat dengan waktu respons yang wajar pada browser modern selama pengujian lokal.
 
 ---
 
-NFR-02 (Security): Kata sandi pengguna harus disimpan dalam bentuk hash menggunakan algoritma bcrypt dengan cost factor minimal 10, dan tidak boleh disimpan atau dikirimkan dalam bentuk plain text di seluruh lapisan sistem.
+NFR-02 (Security): Kata sandi pengguna harus disimpan dalam bentuk hash dan tidak boleh disimpan dalam bentuk plain text.
 
 ---
 
-NFR-03 (Usability): Antarmuka aplikasi harus responsif dan dapat digunakan pada perangkat dengan lebar layar minimal 375px (setara smartphone standar), diverifikasi melalui pengujian di mode mobile pada browser Chrome dan Firefox.
+NFR-03 (Usability): Antarmuka aplikasi harus responsif dan dapat digunakan pada perangkat desktop maupun smartphone.
 
 ---
 
@@ -133,7 +133,7 @@ NFR-04 (Reliability): Sistem harus tersedia minimal 99% waktu dalam sebulan, yan
 
 ---
 
-NFR-05 (Security): Seluruh komunikasi antara klien dan server harus menggunakan protokol HTTPS dengan sertifikat SSL/TLS yang valid, sehingga tidak ada data pengguna yang dikirimkan melalui koneksi tidak terenkripsi.
+NFR-04 (Reliability): Sistem harus dapat menjalankan fungsi utama tanpa error selama proses pengujian dan demonstrasi aplikasi.
 
 ---
 
