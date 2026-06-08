@@ -1,0 +1,92 @@
+@import 'tailwindcss';
+
+@source './**/*.{js,jsx}';
+
+:root {
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: #171513;
+    background: #fff;
+}
+
+html {
+    color-scheme: light;
+    scroll-behavior: smooth;
+}
+
+html.dark {
+    color-scheme: dark;
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    background: #fff;
+    overflow-x: hidden;
+}
+
+button,
+a {
+    cursor: pointer;
+}
+
+.app-shell {
+    min-height: 100vh;
+    background: #fff;
+    color: #171513;
+}
+
+.page-container {
+    width: min(1180px, calc(100% - 2rem));
+    margin-inline: auto;
+}
+
+.page-section {
+    padding-block: 2.5rem;
+}
+
+.wire-panel {
+    border: 1px solid #d8d4cf;
+    border-radius: 1.5rem;
+    background: #fff;
+}
+
+.wire-input {
+    width: 100%;
+    border: 1px solid #8f8a84;
+    border-radius: 1rem;
+    background: #fff;
+    padding: .9rem 1rem;
+    outline: none;
+}
+
+.wire-input:focus {
+    border-color: #ff6b1a;
+    box-shadow: 0 0 0 3px rgb(255 107 26 / 12%);
+}
+
+.wire-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    min-height: 2.75rem;
+    border-radius: .9rem;
+    padding: .7rem 1.15rem;
+    font-weight: 800;
+}
+
+.wire-button-primary {
+    background: #ff6b1a;
+    color: #fff;
+}
+
+@media (max-width: 767px) {
+    .page-container {
+        width: min(100% - 1.25rem, 1180px);
+    }
+
+    .page-section {
+        padding-block: 1.5rem;
+    }
+}
