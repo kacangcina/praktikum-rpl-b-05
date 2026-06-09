@@ -36,12 +36,12 @@ Aplikasi Cubu merupakan solusi terpadu untuk masyarakat Indonesia yang ingin bel
 
 | No | Fungsi | Deskripsi Singkat |
 |---|---|---|
-| 1 | Autentikasi | Registrasi dan login pengguna dengan validasi email |
+| 1 | Autentikasi | Registrasi dan login pengguna dengan validasi format serta keunikan email. |
 | 2 | Manajemen Resep | Publikasi, pencarian, dan pengelolaan resep dengan detail lengkap |
 | 3 | Koleksi Pribadi | Penyimpanan resep favorit ke dalam koleksi yang dapat dikelola |
 | 4 | Video Kelas Memasak | Pengunggahan dan penayangan video kelas dari creator terverifikasi |
 | 5 | Konsultasi AI | Tanya jawab seputar masalah memasak berbasis kecerdasan buatan |
-| 6 | Verifikasi Creator | Proses persetujuan akun chef oleh admin sebelum dapat mempublikasikan konten |
+| 6 | Verifikasi Creator | Proses persetujuan akun chef oleh admin sebelum dapat mempublikasikan konten video|
 
 ### 2.3 Karakteristik Pengguna
 
@@ -65,7 +65,7 @@ Aplikasi Cubu merupakan solusi terpadu untuk masyarakat Indonesia yang ingin bel
 
 ## 3. Kebutuhan Fungsional
 
-FR-01: Sistem menyediakan fitur registrasi akun baru dengan validasi keunikan alamat email yang didaftarkan.  
+FR-01: Sistem menyediakan registrasi akun menggunakan username, email, dan kata sandi minimal 8 karakter. Sistem memvalidasi format dan keunikan email tanpa melakukan verifikasi melalui tautan email.  
 Prioritas: High | Ref: US-02
 
 ---
@@ -75,7 +75,7 @@ Prioritas: High | Ref: US-01
 
 ---
 
-FR-03: Sistem membatasi akses fitur interaksi (tonton video, simpan resep, komentar, rating, konsultasi AI) hanya untuk pengguna yang sudah login, dan menampilkan pesan ajakan registrasi ketika guest mencoba mengakses fitur tersebut.  
+FR-03: Sistem mengunci fitur interaksi bagi guest dan otomatis mengalihkannya ke halaman login saat diakses, karena fitur tersebut khusus untuk pengguna yang telah terautentikasi.  
 Prioritas: High | Ref: US-01
 
 ---
@@ -90,17 +90,17 @@ Prioritas: Medium | Ref: US-06
 
 ---
 
-FR-06: Sistem menyediakan fitur pencarian resep berdasarkan kata kunci nama masakan atau nama bahan, dan menampilkan hasil yang diurutkan berdasarkan relevansi kata kunci serta menyarankan resep populer apabila tidak ada hasil yang ditemukan.  
+FR-06: Sistem mencari resep berdasarkan nama atau bahan, lalu menampilkan hasil yang cocok; jika tidak ada, sistem akan merekomendasikan maksimal tiga resep dengan rating tertinggi.  
 Prioritas: Medium | Ref: US-03
 
 ---
 
-FR-07: Sistem memungkinkan pengguna terdaftar untuk menyimpan resep favorit ke dalam koleksi pribadi tanpa duplikasi resep.  
+FR-07: Pengguna dapat menyimpan dan menghapus resep dari “Koleksi Saya” tanpa duplikasi.  
 Prioritas: Medium | Ref: US-04
 
 ---
 
-FR-08: Sistem memungkinkan creator terverifikasi untuk mengunggah video kelas memasak dalam format MP4 dengan batas ukuran 500MB, dan menampilkan video beserta judul, nama chef, serta kolom komentar kepada pengguna yang sudah login.  
+FR-08: Creator terverifikasi dapat mengunggah video MP4 maksimal 500 MB ke resep miliknya. 
 Prioritas: Medium | Ref: US-09
 
 ---
@@ -117,7 +117,7 @@ Prioritas: Medium | Ref: US-10
 
 ## 4. Kebutuhan Non-Fungsional
 
-NFR-01 (Performance): Halaman utama dan halaman daftar resep dapat dimuat dengan waktu respons yang wajar pada browser modern selama pengujian lokal.
+NFR-01 (Performance): Halaman utama dan halaman daftar resep harus dapat dimuat sepenuhnya oleh browser tanpa memicu error timeout pada server lokal selama proses pengujian.
 
 ---
 
@@ -127,9 +127,6 @@ NFR-02 (Security): Kata sandi pengguna harus disimpan dalam bentuk hash dan tida
 
 NFR-03 (Usability): Antarmuka aplikasi harus responsif dan dapat digunakan pada perangkat desktop maupun smartphone.
 
----
-
-NFR-04 (Reliability): Sistem harus tersedia minimal 99% waktu dalam sebulan, yang setara dengan maksimal downtime 7 jam per bulan, diukur menggunakan layanan monitoring uptime.
 
 ---
 
@@ -150,7 +147,7 @@ NFR-04 (Reliability): Sistem harus dapat menjalankan fungsi utama tanpa error se
 
 - Fitur konsultasi dan rekomendasi AI bergantung pada ketersediaan dan kebijakan layanan API pihak ketiga yang digunakan.
 - Fitur pengunggahan video membutuhkan kapasitas penyimpanan server yang memadai dan dapat meningkat seiring bertambahnya konten.
-- Sistem autentikasi menggunakan verifikasi email sehingga bergantung pada ketersediaan layanan email transaksional.
+- Verifikasi alamat email melalui tautan atau kode OTP tidak termasuk dalam ruang lingkup MVP.
 
 ### Di Luar Lingkup (Out of Scope)
 
