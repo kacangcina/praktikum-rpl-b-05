@@ -31,7 +31,7 @@ As a guest, I want to browse recipes, view recipe details, and read comments wit
 - **AC-01 (edge case):**  
   Given pengguna belum login dan menekan tombol fitur interaksi (tonton video, simpan resep, komentar, rating, atau konsultasi AI),  
   When tombol tersebut ditekan,  
-  Then sistem menampilkan pesan "Daftar atau masuk untuk menggunakan fitur ini" beserta tombol menuju halaman registrasi, tanpa menjalankan aksi tersebut.
+  Then Sistem mengarahkan guest ke halaman login tanpa menjalankan aksi.
 
 ---
 
@@ -46,7 +46,7 @@ As a guest, I want to register a new account using my email and password, so tha
 - **AC-02:**  
   Given pengguna berada di halaman registrasi dan mengisi email valid, kata sandi minimal 8 karakter, serta username,  
   When pengguna menekan tombol "Daftar",  
-  Then sistem membuat akun baru, mengirimkan email verifikasi ke alamat yang didaftarkan, dan menampilkan pesan "Akun berhasil dibuat. Cek email kamu untuk verifikasi."
+  Then Sistem membuat akun baru dan menampilkan pesan “Akun berhasil dibuat.”
 
 - **AC-02 (edge case):**  
   Given pengguna berada di halaman registrasi dan memasukkan email yang sudah terdaftar di sistem,  
@@ -71,7 +71,7 @@ As a user, I want to search for recipes by dish name or ingredients I have at ho
 - **AC-03 (edge case):**  
   Given pengguna sudah login dan memasukkan kata kunci yang tidak cocok dengan resep manapun di database,  
   When pencarian dijalankan,  
-  Then sistem menampilkan pesan "Tidak ada resep yang ditemukan untuk '[kata kunci]'" dan menyarankan 3 resep populer sebagai alternatif.
+  Then Sistem menyarankan maksimal tiga resep berdasarkan rata-rata rating tertinggi.
 
 ---
 
@@ -85,13 +85,13 @@ As a user, I want to save recipes to my personal collection, so that I can easil
 
 - **AC-04:**  
   Given pengguna sudah login dan sedang membuka halaman detail sebuah resep,  
-  When pengguna menekan tombol "Simpan ke Koleksi" dan memilih nama koleksi yang sudah ada atau membuat koleksi baru,  
-  Then resep tersimpan ke koleksi yang dipilih dan sistem menampilkan notifikasi "Resep berhasil disimpan ke [nama koleksi]."
+  When pengguna menekan “Simpan ke Koleksi”, resep disimpan ke “Koleksi Saya”,  
+  Then sistem menampilkan notifikasi keberhasilan.
 
 - **AC-04 (edge case):**  
-  Given pengguna sudah login dan mencoba menyimpan resep yang sudah ada di koleksi yang sama,  
-  When tombol "Simpan ke Koleksi" ditekan dan koleksi yang sama dipilih,  
-  Then sistem menampilkan pesan "Resep sudah ada di koleksi ini" dan tidak menambahkan entri duplikat.
+  Given pengguna sudah login dan resep sudah tersimpan di “Koleksi Saya”,  
+  When pengguna mencoba menekan simpan resep tersebut kembali,  
+  Then sistem menghapus resep tersebut dari “Koleksi Saya” dan menampilkan pesan “Resep dihapus dari koleksi.”
 
 ---
 
@@ -104,7 +104,7 @@ As a user, I want to watch cooking class videos uploaded by a chef, so that I ca
 **Acceptance Criteria:**
 
 - **AC-05:**  
-  Given pengguna sudah login dan membuka halaman video kelas memasak,  
+  Given pengguna sudah login dan membuka halaman detail resep,  
   When pengguna menekan tombol "Tonton Video",  
   Then sistem memutar video dan menampilkan judul video, nama chef, serta kolom komentar di bawah pemutar video.
 
