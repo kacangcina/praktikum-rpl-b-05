@@ -1,141 +1,246 @@
-# Data Dictionary 
+# Data Dictionary CuBu
 
-## Tabel: users
+## Notasi Constraint
 
-| Kolom | Tipe Data | Constraint | Keterangan |
-|---|---|---|---|
-| id | INT | PK, AUTO_INCREMENT | ID unik pengguna |
-| username | VARCHAR(100) | NOT NULL | Nama pengguna untuk ditampilkan di platform |
-| email | VARCHAR(255) | UNIQUE, NOT NULL | Email untuk login dan verifikasi akun |
-| password | VARCHAR(255) | NOT NULL | Password yang telah di-hash menggunakan bcrypt |
-| role | ENUM('guest','user','creator','admin') | NOT NULL, DEFAULT 'user' | Peran pengguna dalam sistem |
-| is_verified | BOOLEAN | NOT NULL, DEFAULT FALSE | Status verifikasi email pengguna |
-| created_at | TIMESTAMP | NOT NULL, DEFAULT NOW() | Waktu akun dibuat |
-| updated_at | TIMESTAMP | NOT NULL, DEFAULT NOW() | Waktu data terakhir diperbarui |
+| Notasi | Arti |
+|---|---|
+| PK | Primary key |
+| FK | Foreign key |
+| AI | Auto increment |
+| NN | Not null |
+| UQ | Unique |
+| NULL | Nilai boleh kosong |
 
----
+## Tabel `users`
 
-## Tabel: recipes
+Menyimpan akun, profil, peran, serta status pengguna.
 
 | Kolom | Tipe Data | Constraint | Keterangan |
 |---|---|---|---|
-| id | INT | PK, AUTO_INCREMENT | ID unik resep |
-| user_id | INT | FK → users.id, NOT NULL | ID pengguna yang membuat resep |
-| title | VARCHAR(255) | NOT NULL | Judul resep |
-| difficulty | ENUM('mudah','sedang','sulit') | NOT NULL | Tingkat kesulitan resep |
-| estimated_time | INT | NOT NULL | Estimasi waktu memasak dalam menit |
-| thumbnail | VARCHAR(500) | NULL | Path atau URL foto thumbnail resep |
-| created_at | TIMESTAMP | NOT NULL, DEFAULT NOW() | Waktu resep dipublikasikan |
-| updated_at | TIMESTAMP | NOT NULL, DEFAULT NOW() | Waktu data terakhir diperbarui |
+| id | BIGINT UNSIGNED | PK, AI | ID unik pengguna |
+| username | VARCHAR(100) | NN, UQ | Nama pengguna unik yang ditampilkan pada aplikasi |
+| name | VARCHAR(255) | NN | Nama lengkap pengguna |
+| email | VARCHAR(255) | NN, UQ | Alamat email untuk autentikasi |
+| email_verified_at | TIMESTAMP | NULL | Waktu verifikasi email |
+| password | VARCHAR(255) | NN | Kata sandi yang telah di-hash |
+| role | ENUM | NN, DEFAULT `user` | Peran pengguna: `guest`, `user`, `creator`, atau `admin` |
+| is_verified | BOOLEAN | NN, DEFAULT `false` | Status verifikasi creator |
+| suspended_at | TIMESTAMP | NULL, INDEX | Waktu akun ditangguhkan oleh admin |
+| suspension_reason | TEXT | NULL | Alasan penangguhan akun |
+| closed_at | TIMESTAMP | NULL, INDEX | Waktu akun ditutup |
+| closure_reason | TEXT | NULL | Alasan penutupan akun |
+| avatar | VARCHAR(500) | NULL | Path file foto profil |
+| bio | TEXT | NULL | Deskripsi singkat profil |
+| remember_token | VARCHAR(100) | NULL | Token fitur remember me |
+| created_at | TIMESTAMP | NULL | Waktu akun dibuat |
+| updated_at | TIMESTAMP | NULL | Waktu akun terakhir diperbarui |
 
----
+## Tabel `recipes`
 
-## Tabel: recipe_tools
-
-| Kolom | Tipe Data | Constraint | Keterangan |
-|---|---|---|---|
-| id | INT | PK, AUTO_INCREMENT | ID unik alat masak |
-| recipe_id | INT | FK → recipes.id, NOT NULL | ID resep yang menggunakan alat ini |
-| tool_name | VARCHAR(100) | NOT NULL | Nama alat masak yang dibutuhkan |
-
----
-
-## Tabel: recipe_ingredients
-
-| Kolom | Tipe Data | Constraint | Keterangan |
-|---|---|---|---|
-| id | INT | PK, AUTO_INCREMENT | ID unik bahan masakan |
-| recipe_id | INT | FK → recipes.id, NOT NULL | ID resep yang menggunakan bahan ini |
-| ingredient_name | VARCHAR(150) | NOT NULL | Nama bahan masakan |
-| quantity | VARCHAR(100) | NOT NULL | Jumlah atau takaran bahan (contoh: 200 gram, 2 sdm) |
-
----
-
-## Tabel: recipe_steps
+Menyimpan informasi utama resep yang dibuat pengguna.
 
 | Kolom | Tipe Data | Constraint | Keterangan |
 |---|---|---|---|
-| id | INT | PK, AUTO_INCREMENT | ID unik langkah masak |
-| recipe_id | INT | FK → recipes.id, NOT NULL | ID resep yang memiliki langkah ini |
-| step_number | INT | NOT NULL | Urutan langkah memasak |
-| description | TEXT | NOT NULL | Deskripsi detail langkah memasak |
+| id | BIGINT UNSIGNED | PK, AI | ID unik resep |
+| user_id | BIGINT UNSIGNED | FK, NN | Pembuat resep, mengacu ke `users.id` |
+| title | VARCHAR(255) | NN | Judul resep |
+| description | TEXT | NULL | Deskripsi resep |
+| difficulty | ENUM | NN, DEFAULT `mudah` | Tingkat kesulitan: `mudah`, `sedang`, atau `sulit` |
+| estimated_time | SMALLINT UNSIGNED | NN | Estimasi waktu memasak dalam menit |
+| thumbnail | VARCHAR(500) | NULL | Path lokal atau URL thumbnail resep |
+| published_at | TIMESTAMP | NULL | Waktu resep dipublikasikan |
+| moderation_status | VARCHAR(20) | NN, DEFAULT `published` | Status moderasi resep |
+| moderation_reason | TEXT | NULL | Alasan tindakan moderasi |
+| moderated_at | TIMESTAMP | NULL | Waktu resep dimoderasi |
+| moderated_by | BIGINT UNSIGNED | FK, NULL | Admin yang melakukan moderasi, mengacu ke `users.id` |
+| created_at | TIMESTAMP | NULL | Waktu data dibuat |
+| updated_at | TIMESTAMP | NULL | Waktu data diperbarui |
 
----
+## Tabel `recipe_tools`
 
-## Tabel: collections
-
-| Kolom | Tipe Data | Constraint | Keterangan |
-|---|---|---|---|
-| id | INT | PK, AUTO_INCREMENT | ID unik koleksi |
-| user_id | INT | FK → users.id, NOT NULL | ID pengguna pemilik koleksi |
-| name | VARCHAR(150) | NOT NULL | Nama koleksi pribadi |
-| created_at | TIMESTAMP | NOT NULL, DEFAULT NOW() | Waktu koleksi dibuat |
-
----
-
-## Tabel: collection_items
-
-| Kolom | Tipe Data | Constraint | Keterangan |
-|---|---|---|---|
-| id | INT | PK, AUTO_INCREMENT | ID unik item koleksi |
-| collection_id | INT | FK → collections.id, NOT NULL | ID koleksi tempat resep disimpan |
-| recipe_id | INT | FK → recipes.id, NOT NULL | ID resep yang disimpan |
-| saved_at | TIMESTAMP | NOT NULL, DEFAULT NOW() | Waktu resep disimpan ke koleksi |
-
-> **Catatan:** Kombinasi (collection_id, recipe_id) harus UNIQUE untuk mencegah duplikasi resep dalam koleksi yang sama.
-
----
-
-## Tabel: videos
+Menyimpan daftar alat yang dibutuhkan setiap resep.
 
 | Kolom | Tipe Data | Constraint | Keterangan |
 |---|---|---|---|
-| id | INT | PK, AUTO_INCREMENT | ID unik video |
-| user_id | INT | FK → users.id, NOT NULL | ID creator yang mengunggah video |
-| title | VARCHAR(255) | NOT NULL | Judul video kelas memasak |
-| description | TEXT | NULL | Deskripsi konten video |
-| difficulty | ENUM('mudah','sedang','sulit') | NOT NULL | Tingkat kesulitan materi dalam video |
-| file_path | VARCHAR(500) | NOT NULL | Path penyimpanan file video (format MP4, maks 500MB) |
-| created_at | TIMESTAMP | NOT NULL, DEFAULT NOW() | Waktu video diunggah |
+| id | BIGINT UNSIGNED | PK, AI | ID unik alat resep |
+| recipe_id | BIGINT UNSIGNED | FK, NN | Resep pemilik alat, mengacu ke `recipes.id` |
+| tool_name | VARCHAR(100) | NN | Nama alat masak |
+| created_at | TIMESTAMP | NULL | Waktu data dibuat |
+| updated_at | TIMESTAMP | NULL | Waktu data diperbarui |
 
----
+## Tabel `recipe_ingredients`
 
-## Tabel: comments
+Menyimpan bahan dan takaran setiap resep.
 
 | Kolom | Tipe Data | Constraint | Keterangan |
 |---|---|---|---|
-| id | INT | PK, AUTO_INCREMENT | ID unik komentar |
-| user_id | INT | FK → users.id, NOT NULL | ID pengguna yang menulis komentar |
-| recipe_id | INT | FK → recipes.id, NOT NULL | ID resep yang dikomentari |
-| content | TEXT | NOT NULL | Isi komentar |
-| created_at | TIMESTAMP | NOT NULL, DEFAULT NOW() | Waktu komentar ditulis |
+| id | BIGINT UNSIGNED | PK, AI | ID unik bahan resep |
+| recipe_id | BIGINT UNSIGNED | FK, NN | Resep pemilik bahan, mengacu ke `recipes.id` |
+| ingredient_name | VARCHAR(150) | NN | Nama bahan |
+| quantity | VARCHAR(100) | NN | Jumlah atau takaran bahan |
+| created_at | TIMESTAMP | NULL | Waktu data dibuat |
+| updated_at | TIMESTAMP | NULL | Waktu data diperbarui |
 
----
+## Tabel `recipe_steps`
 
-## Tabel: ratings
-
-| Kolom | Tipe Data | Constraint | Keterangan |
-|---|---|---|---|
-| id | INT | PK, AUTO_INCREMENT | ID unik rating |
-| user_id | INT | FK → users.id, NOT NULL | ID pengguna yang memberi rating |
-| recipe_id | INT | FK → recipes.id, NOT NULL | ID resep yang diberi rating |
-| type | ENUM('upvote','downvote') | NOT NULL | Jenis penilaian yang diberikan |
-| created_at | TIMESTAMP | NOT NULL, DEFAULT NOW() | Waktu rating diberikan |
-
-> **Catatan:** Kombinasi (user_id, recipe_id) harus UNIQUE agar satu pengguna hanya dapat memberi satu rating per resep.
-
----
-
-## Tabel: creator_verifications
+Menyimpan urutan langkah memasak setiap resep.
 
 | Kolom | Tipe Data | Constraint | Keterangan |
 |---|---|---|---|
-| id | INT | PK, AUTO_INCREMENT | ID unik pengajuan verifikasi |
-| user_id | INT | FK → users.id, NOT NULL | ID pengguna yang mengajukan verifikasi sebagai creator |
-| document_path | VARCHAR(500) | NOT NULL | Path file dokumen pendukung (KTP, portofolio) |
-| status | ENUM('pending','approved','rejected') | NOT NULL, DEFAULT 'pending' | Status pengajuan verifikasi |
-| rejection_reason | TEXT | NULL | Alasan penolakan dari admin (diisi jika status rejected) |
-| submitted_at | TIMESTAMP | NOT NULL, DEFAULT NOW() | Waktu pengajuan verifikasi dikirimkan |
-| reviewed_at | TIMESTAMP | NULL | Waktu admin meninjau pengajuan |
+| id | BIGINT UNSIGNED | PK, AI | ID unik langkah |
+| recipe_id | BIGINT UNSIGNED | FK, NN | Resep pemilik langkah, mengacu ke `recipes.id` |
+| step_number | SMALLINT UNSIGNED | NN | Nomor urut langkah |
+| title | VARCHAR(255) | NULL | Judul singkat langkah |
+| description | TEXT | NN | Penjelasan langkah memasak |
+| created_at | TIMESTAMP | NULL | Waktu data dibuat |
+| updated_at | TIMESTAMP | NULL | Waktu data diperbarui |
 
----
+## Tabel `collections`
+
+Menyimpan koleksi resep milik pengguna.
+
+| Kolom | Tipe Data | Constraint | Keterangan |
+|---|---|---|---|
+| id | BIGINT UNSIGNED | PK, AI | ID unik koleksi |
+| user_id | BIGINT UNSIGNED | FK, NN | Pemilik koleksi, mengacu ke `users.id` |
+| name | VARCHAR(150) | NN | Nama koleksi |
+| created_at | TIMESTAMP | NULL | Waktu koleksi dibuat |
+| updated_at | TIMESTAMP | NULL | Waktu koleksi diperbarui |
+
+## Tabel `collection_items`
+
+Tabel penghubung antara koleksi dan resep yang disimpan.
+
+| Kolom | Tipe Data | Constraint | Keterangan |
+|---|---|---|---|
+| id | BIGINT UNSIGNED | PK, AI | ID unik item koleksi |
+| collection_id | BIGINT UNSIGNED | FK, NN | Koleksi tujuan, mengacu ke `collections.id` |
+| recipe_id | BIGINT UNSIGNED | FK, NN | Resep yang disimpan, mengacu ke `recipes.id` |
+| saved_at | TIMESTAMP | NN, DEFAULT CURRENT_TIMESTAMP | Waktu resep disimpan |
+| created_at | TIMESTAMP | NULL | Waktu data dibuat |
+| updated_at | TIMESTAMP | NULL | Waktu data diperbarui |
+
+## Tabel `videos`
+
+Menyimpan video memasak yang diunggah creator dan dapat dikaitkan dengan resep.
+
+| Kolom | Tipe Data | Constraint | Keterangan |
+|---|---|---|---|
+| id | BIGINT UNSIGNED | PK, AI | ID unik video |
+| user_id | BIGINT UNSIGNED | FK, NN | Creator pengunggah, mengacu ke `users.id` |
+| recipe_id | BIGINT UNSIGNED | FK, NULL, UQ | Resep terkait, mengacu ke `recipes.id` |
+| title | VARCHAR(255) | NN | Judul video |
+| description | TEXT | NULL | Deskripsi isi video |
+| difficulty | ENUM | NN | Tingkat kesulitan: `mudah`, `sedang`, atau `sulit` |
+| file_path | VARCHAR(500) | NN | Path file video MP4 |
+| created_at | TIMESTAMP | NULL | Waktu video dibuat |
+| updated_at | TIMESTAMP | NULL | Waktu video diperbarui |
+
+## Tabel `creator_verifications`
+
+Menyimpan pengajuan dan hasil verifikasi pengguna menjadi creator.
+
+| Kolom | Tipe Data | Constraint | Keterangan |
+|---|---|---|---|
+| id | BIGINT UNSIGNED | PK, AI | ID unik pengajuan |
+| user_id | BIGINT UNSIGNED | FK, NN | Pengaju verifikasi, mengacu ke `users.id` |
+| document_path | VARCHAR(500) | NN | Path dokumen pendukung |
+| portfolio_url | TEXT | NULL | URL portofolio pengaju |
+| notes | TEXT | NULL | Catatan tambahan dari pengaju |
+| status | ENUM | NN, DEFAULT `pending` | Status: `pending`, `approved`, atau `rejected` |
+| rejection_reason | TEXT | NULL | Alasan penolakan pengajuan |
+| submitted_at | TIMESTAMP | NN, DEFAULT CURRENT_TIMESTAMP | Waktu pengajuan dikirim |
+| reviewed_at | TIMESTAMP | NULL | Waktu pengajuan diperiksa |
+| reviewed_by | BIGINT UNSIGNED | FK, NULL | Admin pemeriksa, mengacu ke `users.id` |
+| created_at | TIMESTAMP | NULL | Waktu data dibuat |
+| updated_at | TIMESTAMP | NULL | Waktu data diperbarui |
+
+## Tabel `recipe_reviews`
+
+Menyimpan rating bintang dan ulasan pengguna terhadap resep.
+
+| Kolom | Tipe Data | Constraint | Keterangan |
+|---|---|---|---|
+| id | BIGINT UNSIGNED | PK, AI | ID unik ulasan |
+| recipe_id | BIGINT UNSIGNED | FK, NN | Resep yang diulas, mengacu ke `recipes.id` |
+| user_id | BIGINT UNSIGNED | FK, NN | Penulis ulasan, mengacu ke `users.id` |
+| rating | TINYINT UNSIGNED | NN | Nilai rating bintang |
+| comment | TEXT | NN | Isi komentar ulasan |
+| created_at | TIMESTAMP | NULL | Waktu ulasan dibuat |
+| updated_at | TIMESTAMP | NULL | Waktu ulasan diperbarui |
+
+## Tabel `comments`
+
+Menyimpan komentar pada resep untuk fitur interaksi sederhana.
+
+| Kolom | Tipe Data | Constraint | Keterangan |
+|---|---|---|---|
+| id | BIGINT UNSIGNED | PK, AI | ID unik komentar |
+| user_id | BIGINT UNSIGNED | FK, NN | Penulis komentar, mengacu ke `users.id` |
+| recipe_id | BIGINT UNSIGNED | FK, NN | Resep yang dikomentari, mengacu ke `recipes.id` |
+| content | TEXT | NN | Isi komentar |
+| created_at | TIMESTAMP | NN, DEFAULT CURRENT_TIMESTAMP | Waktu komentar dibuat |
+
+## Tabel `ratings`
+
+Menyimpan penilaian upvote atau downvote pada resep.
+
+| Kolom | Tipe Data | Constraint | Keterangan |
+|---|---|---|---|
+| id | BIGINT UNSIGNED | PK, AI | ID unik rating |
+| user_id | BIGINT UNSIGNED | FK, NN | Pemberi rating, mengacu ke `users.id` |
+| recipe_id | BIGINT UNSIGNED | FK, NN | Resep yang dinilai, mengacu ke `recipes.id` |
+| type | ENUM | NN | Jenis rating: `upvote` atau `downvote` |
+| created_at | TIMESTAMP | NN, DEFAULT CURRENT_TIMESTAMP | Waktu rating diberikan |
+
+## Tabel `notifications`
+
+Menyimpan notifikasi Laravel untuk pengguna.
+
+| Kolom | Tipe Data | Constraint | Keterangan |
+|---|---|---|---|
+| id | CHAR(36) / UUID | PK | ID unik notifikasi |
+| type | VARCHAR(255) | NN | Class atau jenis notifikasi |
+| notifiable_type | VARCHAR(255) | NN, INDEX | Tipe model penerima |
+| notifiable_id | BIGINT UNSIGNED | NN, INDEX | ID model penerima |
+| data | TEXT | NN | Payload notifikasi dalam format JSON |
+| read_at | TIMESTAMP | NULL | Waktu notifikasi dibaca |
+| created_at | TIMESTAMP | NULL | Waktu notifikasi dibuat |
+| updated_at | TIMESTAMP | NULL | Waktu notifikasi diperbarui |
+
+## Tabel `system_settings`
+
+| Kolom | Tipe Data | Constraint | Keterangan |
+|---|---|---|---|
+| id | BIGINT UNSIGNED | PK, AI | ID unik pengaturan |
+| key | VARCHAR(255) | NN, UQ | Nama unik pengaturan |
+| value | LONGTEXT | NULL | Nilai pengaturan |
+| updated_by | BIGINT UNSIGNED | FK, NULL | Admin terakhir yang mengubah, mengacu ke `users.id` |
+| created_at | TIMESTAMP | NULL | Waktu pengaturan dibuat |
+| updated_at | TIMESTAMP | NULL | Waktu pengaturan diperbarui |
+
+## Relasi Utama
+
+| Tabel Induk | Relasi | Tabel Anak |
+|---|---|---|
+| `users` | 1:N | `recipes` |
+| `users` | 1:N | `collections` |
+| `users` | 1:N | `videos` |
+| `users` | 1:N | `creator_verifications` |
+| `users` | 1:N | `recipe_reviews` |
+| `recipes` | 1:N | `recipe_tools` |
+| `recipes` | 1:N | `recipe_ingredients` |
+| `recipes` | 1:N | `recipe_steps` |
+| `recipes` | 1:0..1 | `videos` |
+| `recipes` | 1:N | `recipe_reviews` |
+| `collections` | N:M | `recipes` melalui `collection_items` |
+
+## Tabel Pendukung Framework
+
+| Tabel | Fungsi |
+|---|---|
+| `password_reset_tokens` | Menyimpan token reset kata sandi |
+| `sessions` | Menyimpan sesi login berbasis database |
+| `personal_access_tokens` | Menyimpan token autentikasi Laravel Sanctum |
+| `cache` dan `cache_locks` | Menyimpan cache dan lock aplikasi |
+| `jobs`, `job_batches`, dan `failed_jobs` | Mendukung antrean pekerjaan Laravel |
