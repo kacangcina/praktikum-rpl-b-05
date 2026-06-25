@@ -1,5 +1,6 @@
 package com.example.cookbookfinalproject
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
@@ -26,6 +27,8 @@ import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.material.icons.filled.ChevronRight
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.painterResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -43,25 +46,20 @@ fun HomeScreen(
             .verticalScroll(rememberScrollState())
             .padding(16.dp)
     ) {
-        // 1. Header CuBu
+        // 1. Header CuBu (REVISI: Sejajar kiri dengan logo asli proporsional)
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically // Menghapus SpaceBetween agar teks menempel ke logo
         ) {
-            Text(
-                text = "CuBu",
-                fontSize = 24.sp,
-                fontWeight = FontWeight.ExtraBold,
-                color = Color(0xFF1E293B)
+            Image(
+                painter = painterResource(id = R.drawable.logo),
+                contentDescription = "Logo CuBu",
+                modifier = Modifier
+                    .size(50.dp) // Ukuran 36.dp disamakan dengan ProfileScreen
+                    .clip(RoundedCornerShape(8.dp))
             )
-//            IconButton(onClick = { /* Todo: Dark mode toggle */ }) {
-//                Icon(
-//                    imageVector = Icons.Outlined.DarkMode,
-//                    contentDescription = "Dark Mode",
-//                    tint = Color(0xFF1E293B)
-//                )
-//            }
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(text = "CuBu", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color.Black)
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -83,7 +81,7 @@ fun HomeScreen(
 
                     // 1. Gambar Background dari Laravel
                     AsyncImage(
-                        model = "http://192.168.0.107:8000${featured.thumbnail_url}",
+                        model = "http://10.159.139.75:8000${featured.thumbnail_url}", // Sesuaikan IP servermu
                         contentDescription = null,
                         contentScale = ContentScale.Crop, // Agar gambar memenuhi kotak
                         modifier = Modifier.fillMaxSize()
@@ -277,9 +275,7 @@ fun RecipeCard(
     modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = Modifier
-            .width(160.dp) // Sesuaikan dengan ukuran kartumu
-            .padding(end = 16.dp)
+        modifier = modifier // Menambahkan modifier parameter
             .clickable { navController.navigate("detail/${recipe.id}") }, // Bisa diklik
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),
@@ -288,7 +284,7 @@ fun RecipeCard(
         Column {
             // --- INI ADALAH KUNCI UNTUK MEMUNCULKAN GAMBARNYA ---
             AsyncImage(
-                model = "http://10.159.139.75:8000${recipe.thumbnail_url}",
+                model = "http://10.159.139.75:8000${recipe.thumbnail_url}", // Sesuaikan IP servermu
                 contentDescription = "Thumbnail ${recipe.title}",
                 contentScale = ContentScale.Crop, // Agar gambar terpotong rapi memenuhi kotak
                 modifier = Modifier

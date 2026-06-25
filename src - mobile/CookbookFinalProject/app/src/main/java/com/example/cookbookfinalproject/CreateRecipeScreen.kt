@@ -4,11 +4,13 @@ import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.Image // Import untuk menampilkan logo.png
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -25,6 +27,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource // Import untuk memuat resource gambar
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -42,8 +45,6 @@ fun CreateRecipeScreen(
     var title by remember { mutableStateOf("") }
     var difficulty by remember { mutableStateOf("Pilih") }
     var expandedDifficulty by remember { mutableStateOf(false) }
-
-    // REVISI: Mengosongkan nilai default waktu
     var time by remember { mutableStateOf("") }
 
     var alatInput by remember { mutableStateOf("") }
@@ -55,10 +56,8 @@ fun CreateRecipeScreen(
 
     val stepsList = remember { mutableStateListOf("") }
 
-    // REVISI: State untuk menyimpan alamat foto (URI) dari galeri
     var imageUri by remember { mutableStateOf<Uri?>(null) }
 
-    // REVISI: Mesin pemanggil galeri (Photo Picker Android Modern)
     val photoPickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.PickVisualMedia(),
         onResult = { uri -> imageUri = uri }
@@ -70,41 +69,45 @@ fun CreateRecipeScreen(
             .background(Color.White)
             .padding(horizontal = 20.dp)
     ) {
+        // REVISI: Header dengan Logo CuBu Asli
         item {
             Spacer(modifier = Modifier.height(16.dp))
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Surface(
-                    shape = RoundedCornerShape(8.dp),
-                    color = Color(0xFFF97316),
-                    modifier = Modifier.size(32.dp)
-                ) {}
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.logo),
+                    contentDescription = "Logo CuBu",
+                    modifier = Modifier
+                        .size(36.dp)
+                        .clip(RoundedCornerShape(8.dp))
+                )
                 Spacer(modifier = Modifier.width(8.dp))
-                Text(text = "CuBu", fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                Text(text = "CuBu", fontSize = 20.sp, fontWeight = FontWeight.Bold)
             }
             Spacer(modifier = Modifier.height(24.dp))
             Text(text = "Buat resep baru", fontSize = 22.sp, fontWeight = FontWeight.ExtraBold)
             Spacer(modifier = Modifier.height(16.dp))
         }
 
-        // REVISI: Kotak Unggah Foto dengan Logika Galeri
+        // Kotak Unggah Foto
         item {
             val stroke = Stroke(width = 4f, pathEffect = PathEffect.dashPathEffect(floatArrayOf(15f, 15f), 0f))
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(120.dp)
-                    // Jika belum ada foto, tampilkan garis putus-putus
                     .then(
                         if (imageUri == null) {
                             Modifier.drawBehind {
                                 drawRoundRect(color = Color.Gray, style = stroke, cornerRadius = androidx.compose.ui.geometry.CornerRadius(24f))
                             }
                         } else {
-                            Modifier.clip(RoundedCornerShape(8.dp)) // Jika ada foto, potong sudutnya
+                            Modifier.clip(RoundedCornerShape(8.dp))
                         }
                     )
                     .clickable {
-                        // Perintah untuk membuka galeri foto saat kotak diklik
                         photoPickerLauncher.launch(
                             PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
                         )
@@ -112,7 +115,6 @@ fun CreateRecipeScreen(
                 contentAlignment = Alignment.Center
             ) {
                 if (imageUri != null) {
-                    // Jika pengguna sudah memilih foto, tampilkan fotonya
                     AsyncImage(
                         model = imageUri,
                         contentDescription = "Foto Resep Terpilih",
@@ -120,7 +122,6 @@ fun CreateRecipeScreen(
                         modifier = Modifier.fillMaxSize()
                     )
                 } else {
-                    // Jika belum, tampilkan ikon unggah
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Outlined.Image, contentDescription = "Unggah", modifier = Modifier.size(32.dp), tint = Color.DarkGray)
                         Spacer(modifier = Modifier.height(8.dp))
@@ -180,7 +181,7 @@ fun CreateRecipeScreen(
                     OutlinedTextField(
                         value = time,
                         onValueChange = { time = it },
-                        placeholder = { Text("Estimasi waktu", color = Color.Gray) }, // REVISI: Placeholder ditambahkan
+                        placeholder = { Text("Estimasi waktu", color = Color.Gray) },
                         keyboardOptions = androidx.compose.foundation.text.KeyboardOptions(keyboardType = KeyboardType.Number),
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(8.dp)
