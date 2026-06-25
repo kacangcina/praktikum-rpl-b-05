@@ -14,6 +14,8 @@ class RecipeViewModel : ViewModel() {
     val searchQuery = mutableStateOf("")
     val searchResults = mutableStateOf<List<Recipe>>(emptyList())
 
+    val isLoggedIn = mutableStateOf(false)
+
     init {
         fetchRecipes()
     }

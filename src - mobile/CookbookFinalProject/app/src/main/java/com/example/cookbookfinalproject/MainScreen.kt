@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -24,32 +25,38 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 
 @Composable
-fun MainScreen() {
+fun MainScreen(viewModel: RecipeViewModel = viewModel()) {
     val navController = rememberNavController()
 
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
+    // Daftar rute di mana Bottom Bar HARUS disembunyikan
+    val hideBottomBarRoutes = listOf("login", "register", "detail/{recipeId}")
+    val shouldShowBottomBar = currentRoute !in hideBottomBarRoutes
+
     Scaffold(
         bottomBar = {
-            if (currentRoute != "detail/{recipeId}") {
-                FlatBottomBar(navController)
+            if (shouldShowBottomBar) {
+                FlatBottomBar(navController, viewModel)
             }
         }
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = "home",
+            startDestination = "home", // Aplikasi dimulai dari Beranda
             modifier = Modifier.padding(innerPadding)
         ) {
+            // Rute Auth
+            composable("login") { LoginScreen(navController = navController, viewModel = viewModel) }
+            composable("register") { RegisterScreen(navController = navController) }
+
+            // Rute Utama
             composable("home") { HomeScreen(navController = navController) }
-            // Menambahkan Rute Baru: Cari
             composable("search") { SearchScreen(navController = navController) }
-            composable("create") {
-                CreateRecipeScreen(navController = navController)
-            }
+            composable("create") { CreateRecipeScreen(navController = navController) }
             composable("collection") { CollectionScreen(navController = navController) }
-            composable("profile") { Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { Text("Halaman Profil") } }
+            composable("profile") { ProfileScreen(navController = navController, viewModel = viewModel) }
 
             composable(
                 route = "detail/{recipeId}",
@@ -62,11 +69,11 @@ fun MainScreen() {
     }
 }
 
-// Desain Bottom Bar Baru (Sejajar & Rata)
 @Composable
-fun FlatBottomBar(navController: NavHostController) {
+fun FlatBottomBar(navController: NavHostController, viewModel: RecipeViewModel) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
+    val isLoggedIn = viewModel.isLoggedIn.value // Ambil status login
 
     Surface(
         modifier = Modifier.fillMaxWidth().height(70.dp),
@@ -78,35 +85,23 @@ fun FlatBottomBar(navController: NavHostController) {
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            BottomBarItem(
-                icon = Icons.Outlined.Home,
-                label = "Beranda",
-                isSelected = currentRoute == "home",
-                onClick = { navController.navigate("home") { popUpTo("home") { inclusive = true } } }
-            )
-            BottomBarItem(
-                icon = Icons.Outlined.Search,
-                label = "Cari",
-                isSelected = currentRoute == "search",
-                onClick = { navController.navigate("search") }
-            )
-            BottomBarItem(
-                icon = Icons.Default.Add, // Ikon + biasa
-                label = "Buat",
-                isSelected = currentRoute == "create",
-                onClick = { navController.navigate("create") }
-            )
-            BottomBarItem(
-                icon = Icons.Outlined.BookmarkBorder,
-                label = "Koleksi",
-                isSelected = currentRoute == "collection",
-                onClick = { navController.navigate("collection") }
-            )
+            BottomBarItem(icon = Icons.Outlined.Home, label = "Beranda", isSelected = currentRoute == "home", onClick = { navController.navigate("home") { popUpTo("home") { inclusive = true } } })
+            BottomBarItem(icon = Icons.Outlined.Search, label = "Cari", isSelected = currentRoute == "search", onClick = { navController.navigate("search") })
+            BottomBarItem(icon = Icons.Default.Add, label = "Buat", isSelected = currentRoute == "create", onClick = { navController.navigate("create") })
+            BottomBarItem(icon = Icons.Outlined.BookmarkBorder, label = "Koleksi", isSelected = currentRoute == "collection", onClick = { navController.navigate("collection") })
+
+            // LOGIKA REDIRECT PROFIL
             BottomBarItem(
                 icon = Icons.Outlined.Person,
                 label = "Profil",
                 isSelected = currentRoute == "profile",
-                onClick = { navController.navigate("profile") }
+                onClick = {
+                    if (isLoggedIn) {
+                        navController.navigate("profile") // Jika sudah login, ke profil
+                    } else {
+                        navController.navigate("login") // Jika guest, lempar ke login
+                    }
+                }
             )
         }
     }
@@ -117,9 +112,7 @@ fun BottomBarItem(icon: ImageVector, label: String, isSelected: Boolean, onClick
     val color = if (isSelected) Color(0xFFF97316) else Color.DarkGray
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
-            .clickable(onClick = onClick)
-            .padding(horizontal = 8.dp, vertical = 8.dp)
+        modifier = Modifier.clickable(onClick = onClick).padding(horizontal = 8.dp, vertical = 8.dp)
     ) {
         Icon(icon, contentDescription = label, tint = color, modifier = Modifier.size(28.dp))
         Spacer(modifier = Modifier.height(2.dp))
