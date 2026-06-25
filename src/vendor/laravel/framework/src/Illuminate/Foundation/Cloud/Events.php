@@ -2,6 +2,7 @@
 
 namespace Illuminate\Foundation\Cloud;
 
+use Illuminate\Foundation\Cloud;
 use RuntimeException;
 use Throwable;
 
@@ -98,6 +99,8 @@ class Events
      * Format the payload.
      *
      * @param  list<array<string, mixed>>  $payloads
+     *
+     * @throws \JsonException
      */
     protected function format(array $payloads): string
     {
