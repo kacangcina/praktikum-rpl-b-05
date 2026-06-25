@@ -1,4 +1,4 @@
-package com.example.cookbookfinalproject
+package com.example.cookbookfinalproject.ui.screens
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -23,6 +23,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.cookbookfinalproject.ui.viewmodel.RecipeViewModel
 
 @Composable
 fun MainScreen(viewModel: RecipeViewModel = viewModel()) {
@@ -31,8 +32,16 @@ fun MainScreen(viewModel: RecipeViewModel = viewModel()) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
-    // Daftar rute di mana Bottom Bar HARUS disembunyikan
-    val hideBottomBarRoutes = listOf("login", "register", "detail/{recipeId}")
+    val hideBottomBarRoutes = listOf(
+        "login",
+        "register",
+        "detail/{recipeId}",
+        "edit/{recipeId}",
+        "edit_profile",
+        "verify_creator",
+        "notifications",
+        "splash"
+    )
     val shouldShowBottomBar = currentRoute !in hideBottomBarRoutes
 
     Scaffold(
@@ -44,26 +53,40 @@ fun MainScreen(viewModel: RecipeViewModel = viewModel()) {
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = "home", // Aplikasi dimulai dari Beranda
+            startDestination = "splash",
             modifier = Modifier.padding(innerPadding)
         ) {
-            // Rute Auth
+            composable("splash") { SplashScreen(navController = navController) }
             composable("login") { LoginScreen(navController = navController, viewModel = viewModel) }
-            composable("register") { RegisterScreen(navController = navController) }
-
-            // Rute Utama
-            composable("home") { HomeScreen(navController = navController) }
+            composable("register") { RegisterScreen(navController = navController, viewModel = viewModel) }
+            composable("home") { HomeScreen(navController = navController, viewModel = viewModel) }
             composable("search") { SearchScreen(navController = navController) }
-            composable("create") { CreateRecipeScreen(navController = navController) }
-            composable("collection") { CollectionScreen(navController = navController) }
+            composable("create") { CreateRecipeScreen(navController = navController, viewModel = viewModel) }
+            composable("collection") { CollectionScreen(navController = navController, viewModel = viewModel) }
             composable("profile") { ProfileScreen(navController = navController, viewModel = viewModel) }
+            composable("edit_profile") { EditProfileScreen(navController = navController, viewModel = viewModel) }
+            composable("verify_creator") { VerifyCreatorScreen(navController = navController, viewModel = viewModel) }
+            composable("notifications") {
+                NotificationScreen(navController = navController, viewModel = viewModel)
+            }
 
             composable(
                 route = "detail/{recipeId}",
                 arguments = listOf(navArgument("recipeId") { type = NavType.IntType })
             ) { backStackEntry ->
                 val id = backStackEntry.arguments?.getInt("recipeId") ?: 0
-                DetailScreen(navController = navController, recipeId = id)
+                DetailScreen(navController = navController, recipeId = id, viewModel = viewModel)
+            }
+            composable(
+                route = "edit/{recipeId}",
+                arguments = listOf(navArgument("recipeId") { type = NavType.IntType })
+            ) { backStackEntry ->
+                val id = backStackEntry.arguments?.getInt("recipeId") ?: 0
+                CreateRecipeScreen(
+                    navController = navController,
+                    viewModel = viewModel,
+                    recipeId = id
+                )
             }
         }
     }
@@ -73,7 +96,7 @@ fun MainScreen(viewModel: RecipeViewModel = viewModel()) {
 fun FlatBottomBar(navController: NavHostController, viewModel: RecipeViewModel) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
-    val isLoggedIn = viewModel.isLoggedIn.value // Ambil status login
+    val isLoggedIn = viewModel.isLoggedIn.value
 
     Surface(
         modifier = Modifier.fillMaxWidth().height(70.dp),
@@ -86,20 +109,25 @@ fun FlatBottomBar(navController: NavHostController, viewModel: RecipeViewModel) 
             verticalAlignment = Alignment.CenterVertically
         ) {
             BottomBarItem(icon = Icons.Outlined.Home, label = "Beranda", isSelected = currentRoute == "home", onClick = { navController.navigate("home") { popUpTo("home") { inclusive = true } } })
-            BottomBarItem(icon = Icons.Outlined.Search, label = "Cari", isSelected = currentRoute == "search", onClick = { navController.navigate("search") })
-            BottomBarItem(icon = Icons.Default.Add, label = "Buat", isSelected = currentRoute == "create", onClick = { navController.navigate("create") })
-            BottomBarItem(icon = Icons.Outlined.BookmarkBorder, label = "Koleksi", isSelected = currentRoute == "collection", onClick = { navController.navigate("collection") })
+            BottomBarItem(icon = Icons.Outlined.SmartToy, label = "Tanya AI", isSelected = currentRoute == "search", onClick = {
+                navController.navigate(if (isLoggedIn) "search" else "login")
+            })
+            BottomBarItem(icon = Icons.Default.Add, label = "Buat", isSelected = currentRoute == "create", onClick = {
+                navController.navigate(if (isLoggedIn) "create" else "login")
+            })
+            BottomBarItem(icon = Icons.Outlined.BookmarkBorder, label = "Koleksi", isSelected = currentRoute == "collection", onClick = {
+                navController.navigate(if (isLoggedIn) "collection" else "login")
+            })
 
-            // LOGIKA REDIRECT PROFIL
             BottomBarItem(
                 icon = Icons.Outlined.Person,
                 label = "Profil",
                 isSelected = currentRoute == "profile",
                 onClick = {
                     if (isLoggedIn) {
-                        navController.navigate("profile") // Jika sudah login, ke profil
+                        navController.navigate("profile")
                     } else {
-                        navController.navigate("login") // Jika guest, lempar ke login
+                        navController.navigate("login")
                     }
                 }
             )

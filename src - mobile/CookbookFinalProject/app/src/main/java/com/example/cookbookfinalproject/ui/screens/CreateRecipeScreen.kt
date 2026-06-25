@@ -1,10 +1,10 @@
-package com.example.cookbookfinalproject
+package com.example.cookbookfinalproject.ui.screens
 
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.Image // Import untuk menampilkan logo.png
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -17,6 +17,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.DeleteOutline
 import androidx.compose.material.icons.outlined.Image
+import androidx.compose.material.icons.outlined.VideoFile
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -27,7 +28,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource // Import untuk memuat resource gambar
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -35,32 +37,71 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
+import com.example.cookbookfinalproject.R
+import com.example.cookbookfinalproject.ui.viewmodel.RecipeViewModel
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 fun CreateRecipeScreen(
     navController: NavHostController,
-    viewModel: RecipeViewModel = viewModel()
+    viewModel: RecipeViewModel = viewModel(),
+    recipeId: Int? = null
 ) {
-    var title by remember { mutableStateOf("") }
-    var difficulty by remember { mutableStateOf("Pilih") }
+    var title by remember(recipeId) { mutableStateOf("") }
+    var description by remember(recipeId) { mutableStateOf("") }
+    var difficulty by remember(recipeId) { mutableStateOf("Pilih") }
     var expandedDifficulty by remember { mutableStateOf(false) }
-    var time by remember { mutableStateOf("") }
+    var time by remember(recipeId) { mutableStateOf("") }
 
     var alatInput by remember { mutableStateOf("") }
-    val alatList = remember { mutableStateListOf<String>() }
+    val alatList = remember(recipeId) { mutableStateListOf<String>() }
 
     var bahanName by remember { mutableStateOf("") }
     var bahanQty by remember { mutableStateOf("") }
-    val bahanList = remember { mutableStateListOf<String>() }
+    val bahanList = remember(recipeId) { mutableStateListOf<String>() }
 
-    val stepsList = remember { mutableStateListOf("") }
+    val stepTitlesList = remember(recipeId) { mutableStateListOf("") }
+    val stepsList = remember(recipeId) { mutableStateListOf("") }
 
-    var imageUri by remember { mutableStateOf<Uri?>(null) }
+    var imageUri by remember(recipeId) { mutableStateOf<Uri?>(null) }
+    var videoUri by remember(recipeId) { mutableStateOf<Uri?>(null) }
+    var formInitialized by remember(recipeId) { mutableStateOf(false) }
+    val context = LocalContext.current
+    val canUploadVideo = viewModel.currentUser.value?.can_upload_videos == true
+    val existingRecipe = viewModel.selectedRecipe.value?.takeIf { it.id == recipeId }
+
+    LaunchedEffect(recipeId) {
+        if (recipeId != null && viewModel.selectedRecipe.value?.id != recipeId) {
+            viewModel.fetchDetail(recipeId)
+        }
+    }
+
+    LaunchedEffect(recipeId, existingRecipe?.id) {
+        if (recipeId != null && existingRecipe != null && !formInitialized) {
+            title = existingRecipe.title
+            description = existingRecipe.description
+            difficulty = existingRecipe.difficulty.replaceFirstChar { it.uppercase() }
+            time = existingRecipe.estimated_time.toString()
+            alatList.addAll(existingRecipe.tools.orEmpty().map { it.name })
+            bahanList.addAll(
+                existingRecipe.ingredients.orEmpty().map { "${it.name} - [${it.quantity}]" }
+            )
+            stepTitlesList.clear()
+            stepsList.clear()
+            stepTitlesList.addAll(existingRecipe.steps.orEmpty().map { it.title })
+            stepsList.addAll(existingRecipe.steps.orEmpty().map { it.description })
+            formInitialized = true
+        }
+    }
 
     val photoPickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.PickVisualMedia(),
         onResult = { uri -> imageUri = uri }
+    )
+
+    val videoPickerLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.GetContent(),
+        onResult = { uri -> videoUri = uri }
     )
 
     LazyColumn(
@@ -69,7 +110,6 @@ fun CreateRecipeScreen(
             .background(Color.White)
             .padding(horizontal = 20.dp)
     ) {
-        // REVISI: Header dengan Logo CuBu Asli
         item {
             Spacer(modifier = Modifier.height(16.dp))
             Row(
@@ -80,14 +120,18 @@ fun CreateRecipeScreen(
                     painter = painterResource(id = R.drawable.logo),
                     contentDescription = "Logo CuBu",
                     modifier = Modifier
-                        .size(36.dp)
-                        .clip(RoundedCornerShape(8.dp))
+                        .size(50.dp)
+                        .clip(RoundedCornerShape(12.dp))
                 )
-                Spacer(modifier = Modifier.width(8.dp))
-                Text(text = "CuBu", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                Spacer(modifier = Modifier.width(10.dp))
+                Text(text = "CuBu", fontSize = 24.sp, fontWeight = FontWeight.Bold)
             }
             Spacer(modifier = Modifier.height(24.dp))
-            Text(text = "Buat resep baru", fontSize = 22.sp, fontWeight = FontWeight.ExtraBold)
+            Text(
+                text = if (recipeId == null) "Buat resep baru" else "Edit resep",
+                fontSize = 22.sp,
+                fontWeight = FontWeight.ExtraBold
+            )
             Spacer(modifier = Modifier.height(16.dp))
         }
 
@@ -114,10 +158,10 @@ fun CreateRecipeScreen(
                     },
                 contentAlignment = Alignment.Center
             ) {
-                if (imageUri != null) {
+                if (imageUri != null || existingRecipe?.thumbnail_url != null) {
                     AsyncImage(
-                        model = imageUri,
-                        contentDescription = "Foto Resep Terpilih",
+                        model = imageUri ?: existingRecipe?.thumbnail_url,
+                        contentDescription = "Foto resep",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier.fillMaxSize()
                     )
@@ -132,12 +176,73 @@ fun CreateRecipeScreen(
             Spacer(modifier = Modifier.height(20.dp))
         }
 
+        if (canUploadVideo) {
+            item {
+                InputLabel("Video resep (opsional)")
+                Surface(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { videoPickerLauncher.launch("video/mp4") },
+                    color = if (videoUri == null) Color(0xFFF8FAFC) else Color(0xFFFFF7ED),
+                    shape = RoundedCornerShape(12.dp),
+                    border = androidx.compose.foundation.BorderStroke(
+                        1.dp,
+                        if (videoUri == null) Color(0xFFCBD5E1) else Color(0xFFF97316)
+                    )
+                ) {
+                    Row(
+                        modifier = Modifier.padding(16.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            Icons.Outlined.VideoFile,
+                            contentDescription = null,
+                            tint = Color(0xFFF97316),
+                            modifier = Modifier.size(28.dp)
+                        )
+                        Spacer(Modifier.width(12.dp))
+                        Column(Modifier.weight(1f)) {
+                            Text(
+                                if (videoUri == null) "Pilih video MP4" else "Video MP4 sudah dipilih",
+                                fontWeight = FontWeight.Bold
+                            )
+                            Text(
+                                "Maksimal 500 MB",
+                                color = Color.Gray,
+                                fontSize = 12.sp
+                            )
+                        }
+                        if (videoUri != null) {
+                            IconButton(onClick = { videoUri = null }) {
+                                Icon(Icons.Default.Close, contentDescription = "Hapus video")
+                            }
+                        }
+                    }
+                }
+                Spacer(modifier = Modifier.height(20.dp))
+            }
+        }
+
         item {
             InputLabel("Judul resep")
             OutlinedTextField(
                 value = title,
                 onValueChange = { title = it },
                 placeholder = { Text("Nama resep...", color = Color.Gray) },
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(8.dp)
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+        }
+
+        item {
+            InputLabel("Deskripsi")
+            OutlinedTextField(
+                value = description,
+                onValueChange = { description = it },
+                placeholder = { Text("Ceritakan resep dan hasil masakannya...") },
+                minLines = 3,
+                maxLines = 5,
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(8.dp)
             )
@@ -268,32 +373,86 @@ fun CreateRecipeScreen(
             InputLabel("Langkah memasak")
         }
         items(stepsList.size) { index ->
-            Row(
-                modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp),
-                verticalAlignment = Alignment.CenterVertically
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 12.dp),
+                shape = RoundedCornerShape(12.dp),
+                colors = CardDefaults.cardColors(containerColor = Color(0xFFF8FAFC)),
+                border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFFE2E8F0))
             ) {
-                OutlinedTextField(
-                    value = stepsList[index],
-                    onValueChange = { newValue -> stepsList[index] = newValue },
-                    placeholder = { Text("Langkah ke-${index + 1}...", color = Color.Gray) },
-                    modifier = Modifier.weight(1f),
-                    shape = RoundedCornerShape(8.dp),
-                    leadingIcon = {
-                        Text(text = "${index + 1}", fontWeight = FontWeight.Bold, modifier = Modifier.padding(start = 8.dp))
+                Column(modifier = Modifier.padding(12.dp)) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Surface(
+                            modifier = Modifier.size(30.dp),
+                            shape = CircleShape,
+                            color = Color(0xFFF97316)
+                        ) {
+                            Box(contentAlignment = Alignment.Center) {
+                                Text(
+                                    text = "${index + 1}",
+                                    color = Color.White,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+                        }
+                        Spacer(modifier = Modifier.width(10.dp))
+                        Text(
+                            text = "Langkah ${index + 1}",
+                            modifier = Modifier.weight(1f),
+                            fontWeight = FontWeight.Bold
+                        )
+                        IconButton(
+                            onClick = {
+                                if (stepsList.size == 1) {
+                                    stepTitlesList[0] = ""
+                                    stepsList[0] = ""
+                                } else {
+                                    stepTitlesList.removeAt(index)
+                                    stepsList.removeAt(index)
+                                }
+                            }
+                        ) {
+                            Icon(
+                                Icons.Default.DeleteOutline,
+                                contentDescription = "Hapus langkah",
+                                tint = Color.DarkGray
+                            )
+                        }
                     }
-                )
-                Spacer(modifier = Modifier.width(8.dp))
-                IconButton(
-                    onClick = { stepsList.removeAt(index) },
-                    modifier = Modifier.background(Color(0xFFE2E8F0), RoundedCornerShape(8.dp))
-                ) {
-                    Icon(Icons.Default.DeleteOutline, contentDescription = "Hapus Langkah", tint = Color.DarkGray)
+
+                    OutlinedTextField(
+                        value = stepTitlesList[index],
+                        onValueChange = { stepTitlesList[index] = it },
+                        label = { Text("Judul langkah") },
+                        placeholder = { Text("Contoh: Tumis bumbu") },
+                        singleLine = true,
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(8.dp)
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    OutlinedTextField(
+                        value = stepsList[index],
+                        onValueChange = { stepsList[index] = it },
+                        label = { Text("Deskripsi langkah") },
+                        placeholder = { Text("Jelaskan proses memasaknya...") },
+                        minLines = 3,
+                        maxLines = 5,
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(8.dp)
+                    )
                 }
             }
         }
         item {
             Button(
-                onClick = { stepsList.add("") },
+                onClick = {
+                    stepTitlesList.add("")
+                    stepsList.add("")
+                },
                 modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Gray),
                 shape = RoundedCornerShape(8.dp)
@@ -304,27 +463,69 @@ fun CreateRecipeScreen(
         }
 
         item {
+            viewModel.createError.value?.let {
+                Text(
+                    it,
+                    color = MaterialTheme.colorScheme.error,
+                    fontSize = 12.sp,
+                    modifier = Modifier.padding(bottom = 8.dp)
+                )
+            }
             Button(
                 onClick = {
-                    viewModel.createRecipe(
+                    val submittedTools = alatList.toMutableList().apply {
+                        alatInput.trim().takeIf { it.isNotEmpty() }?.let(::add)
+                    }
+                    val submittedIngredients = bahanList.toMutableList().apply {
+                        if (bahanName.isNotBlank() && bahanQty.isNotBlank()) {
+                            add("${bahanName.trim()} - [${bahanQty.trim()}]")
+                        }
+                    }
+
+                    viewModel.saveRecipe(
+                        recipeId = recipeId,
+                        context = context,
+                        imageUri = imageUri,
+                        videoUri = videoUri,
                         title = title,
+                        description = description,
                         difficulty = difficulty,
                         time = time,
-                        alat = alatList,
-                        bahan = bahanList,
+                        alat = submittedTools,
+                        bahan = submittedIngredients,
+                        judulLangkah = stepTitlesList,
                         langkah = stepsList,
                         onSuccess = {
-                            navController.navigate("home") {
-                                popUpTo("home") { inclusive = true }
+                            if (recipeId == null) {
+                                navController.navigate("home") {
+                                    popUpTo("home") { inclusive = true }
+                                }
+                            } else {
+                                navController.navigate("detail/$recipeId") {
+                                    popUpTo("edit/$recipeId") { inclusive = true }
+                                }
                             }
                         }
                     )
                 },
+                enabled = !viewModel.createLoading.value,
                 modifier = Modifier.fillMaxWidth().height(50.dp),
                 shape = RoundedCornerShape(8.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF1E293B))
             ) {
-                Text("Publikasikan", color = Color.White, fontWeight = FontWeight.Bold)
+                if (viewModel.createLoading.value) {
+                    CircularProgressIndicator(
+                        modifier = Modifier.size(22.dp),
+                        color = Color.White,
+                        strokeWidth = 2.dp
+                    )
+                } else {
+                    Text(
+                        if (recipeId == null) "Publikasikan" else "Simpan perubahan",
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
             }
             Spacer(modifier = Modifier.height(100.dp))
         }
