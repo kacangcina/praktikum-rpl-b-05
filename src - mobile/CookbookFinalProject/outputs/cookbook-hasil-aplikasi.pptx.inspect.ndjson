@@ -1,0 +1,204 @@
+{"kind":"deck","id":"pr/5gnm79","name":"Deck"}
+{"kind":"layout","layoutId":"5789220e-2031-49e4-84a4-d63dc7ff0ce8","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"c686de4f-738f-43d1-9a59-069a3a193331","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/0h3qck","slide":1,"title":"CuBu","textShapes":9}
+{"kind":"shape","id":"sh/032lszqt","slide":1,"bbox":[0,520,1280,200]}
+{"kind":"textbox","id":"sh/bi9s36hc","slide":1,"text":"CuBu","textPreview":"CuBu","textChars":4,"textLines":1,"bbox":[42,42,220,54]}
+{"kind":"shape","id":"sh/ixczed8v","slide":1,"bbox":[42,108,76,5]}
+{"kind":"textbox","id":"sh/p0bi9s36","slide":1,"text":"Cookbook App","textPreview":"Cookbook App","textChars":12,"textLines":1,"bbox":[42,176,680,92]}
+{"kind":"textbox","id":"sh/0fepkzup","slide":1,"text":"Hasil Aplikasi Mobile Cookbook","textPreview":"Hasil Aplikasi Mobile Cookbook","textChars":30,"textLines":1,"bbox":[42,282,650,48]}
+{"kind":"textbox","id":"sh/bulwval8","slide":1,"text":"Platform belajar memasak mandiri dengan resep lokal terstruktur, video kelas dari creator terverifikasi, koleksi resep, ulasan, dan konsultasi AI.","textPreview":"Platform belajar memasak mandiri dengan resep lokal terstruktur, video kelas dari creator terverifikasi, koleksi resep, ulasan, dan konsu...","textChars":146,"textLines":1,"bbox":[42,354,760,102]}
+{"kind":"shape","id":"sh/i9s36hcr","slide":1,"bbox":[452,564,350,104]}
+{"kind":"shape","id":"sh/t47y1kre","slide":1,"bbox":[476,592,18,18]}
+{"kind":"textbox","id":"sh/0je9cvix","slide":1,"text":"Fokus demo","textPreview":"Fokus demo","textChars":10,"textLines":1,"bbox":[510,586,266,30]}
+{"kind":"textbox","id":"sh/a5gbq1or","slide":1,"text":"Mobile Android sebagai client utama yang terhubung ke API backend cookbook.","textPreview":"Mobile Android sebagai client utama yang terhubung ke API backend cookbook.","textChars":75,"textLines":1,"bbox":[476,622,302,38]}
+{"kind":"shape","id":"sh/3m94fu18","slide":1,"bbox":[844,564,350,104]}
+{"kind":"shape","id":"sh/s72x4nap","slide":1,"bbox":[868,592,18,18]}
+{"kind":"textbox","id":"sh/lszqtcj6","slide":1,"text":"Output","textPreview":"Output","textChars":6,"textLines":1,"bbox":[902,586,266,30]}
+{"kind":"textbox","id":"sh/adsji5sn","slide":1,"text":"Resep, video, koleksi, rating, profil, notifikasi, creator, dan AI.","textPreview":"Resep, video, koleksi, rating, profil, notifikasi, creator, dan AI.","textChars":67,"textLines":1,"bbox":[868,622,302,38]}
+{"kind":"textbox","id":"sh/3ylc7u54","slide":1,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[1184,662,54,24]}
+{"kind":"image","id":"im/vy90je9c","slide":1,"name":"","alt":"Logo CuBu","bbox":[854,100,212,212]}
+{"kind":"notes","id":"nt/0h3qck","slide":1,"text":""}
+{"kind":"slide","id":"sl/5j7aeb","slide":2,"title":"PROBLEM - SOLUTION","textShapes":11}
+{"kind":"textbox","id":"sh/qd4vmtwr","slide":2,"text":"PROBLEM - SOLUTION","textPreview":"PROBLEM - SOLUTION","textChars":18,"textLines":1,"bbox":[42,38,520,28]}
+{"kind":"textbox","id":"sh/x4nap4r6","slide":2,"text":"Masalah yang diselesaikan","textPreview":"Masalah yang diselesaikan","textChars":25,"textLines":1,"bbox":[42,72,820,68]}
+{"kind":"shape","id":"sh/8jqh0fep","slide":2,"bbox":[42,154,1196,1.2]}
+{"kind":"textbox","id":"sh/fa9w3m94","slide":2,"text":"CuBu - Hasil Aplikasi","textPreview":"CuBu - Hasil Aplikasi","textChars":21,"textLines":1,"bbox":[42,662,360,24]}
+{"kind":"textbox","id":"sh/qpg3ex0n","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1184,662,54,24]}
+{"kind":"shape","id":"sh/xczed8v6","slide":2,"bbox":[42,214,560,282]}
+{"kind":"shape","id":"sh/8v6psfil","slide":2,"bbox":[66,242,18,18]}
+{"kind":"textbox","id":"sh/je9cvixc","slide":2,"text":"Kondisi awal","textPreview":"Kondisi awal","textChars":12,"textLines":1,"bbox":[66,276,512,34]}
+{"kind":"textbox","id":"sh/qtcj6tov","slide":2,"text":"Pemula memasak sulit menemukan resep yang bertahap, relevan dengan bahan lokal, dan cukup terpercaya untuk diikuti mandiri di rumah.","textPreview":"Pemula memasak sulit menemukan resep yang bertahap, relevan dengan bahan lokal, dan cukup terpercaya untuk diikuti mandiri di rumah.","textChars":132,"textLines":1,"bbox":[66,322,512,152]}
+{"kind":"shape","id":"sh/svu9knih","slide":2,"bbox":[678,214,560,282]}
+{"kind":"shape","id":"sh/hgn29gr2","slide":2,"bbox":[702,242,18,18]}
+{"kind":"textbox","id":"sh/ap4r65wj","slide":2,"text":"Solusi aplikasi","textPreview":"Solusi aplikasi","textChars":15,"textLines":1,"bbox":[702,276,512,34]}
+{"kind":"textbox","id":"sh/za1gvy90","slide":2,"text":"CuBu menghubungkan pengguna dengan resep lokal, video kelas memasak, creator terverifikasi, serta bantuan AI saat proses memasak menemui masalah.","textPreview":"CuBu menghubungkan pengguna dengan resep lokal, video kelas memasak, creator terverifikasi, serta bantuan AI saat proses memasak menemui ...","textChars":145,"textLines":1,"bbox":[702,322,512,152]}
+{"kind":"textbox","id":"sh/s36hcrmh","slide":2,"text":"Dari pencarian resep acak","textPreview":"Dari pencarian resep acak","textChars":25,"textLines":1,"bbox":[134,548,280,42]}
+{"kind":"textbox","id":"sh/hoza1gvy","slide":2,"text":"->","textPreview":"->","textChars":2,"textLines":1,"bbox":[613,548,54,42]}
+{"kind":"textbox","id":"sh/a1gvy90j","slide":2,"text":"Menjadi pengalaman belajar memasak terpandu","textPreview":"Menjadi pengalaman belajar memasak terpandu","textChars":43,"textLines":1,"bbox":[788,548,340,58]}
+{"kind":"notes","id":"nt/5j7aeb","slide":2,"text":""}
+{"kind":"slide","id":"sl/ftkbem","slide":3,"title":"ROLE APLIKASI","textShapes":13}
+{"kind":"textbox","id":"sh/5wjudg7a","slide":3,"text":"ROLE APLIKASI","textPreview":"ROLE APLIKASI","textChars":13,"textLines":1,"bbox":[42,38,520,28]}
+{"kind":"textbox","id":"sh/y90je9cv","slide":3,"text":"Aktor dan hak akses","textPreview":"Aktor dan hak akses","textChars":19,"textLines":1,"bbox":[42,72,820,68]}
+{"kind":"shape","id":"sh/nuxc3ylc","slide":3,"bbox":[42,154,1196,1.2]}
+{"kind":"textbox","id":"sh/gn29gr2p","slide":3,"text":"CuBu - Hasil Aplikasi","textPreview":"CuBu - Hasil Aplikasi","textChars":21,"textLines":1,"bbox":[42,662,360,24]}
+{"kind":"textbox","id":"sh/58z25kb6","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1184,662,54,24]}
+{"kind":"shape","id":"sh/yhgn29gr","slide":3,"bbox":[42,222,258,302]}
+{"kind":"shape","id":"sh/n29gr2p8","slide":3,"bbox":[66,250,20,20]}
+{"kind":"textbox","id":"sh/czed8v6p","slide":3,"text":"Guest","textPreview":"Guest","textChars":5,"textLines":1,"bbox":[66,296,210,42]}
+{"kind":"textbox","id":"sh/5kb6xkf6","slide":3,"text":"Melihat resep publik, detail resep, dan komentar. Interaksi diarahkan ke login.","textPreview":"Melihat resep publik, detail resep, dan komentar. Interaksi diarahkan ke login.","textChars":79,"textLines":1,"bbox":[66,360,210,126]}
+{"kind":"shape","id":"sh/x4nap4r6","slide":3,"bbox":[341,222,258,302]}
+{"kind":"shape","id":"sh/8jqh0fep","slide":3,"bbox":[365,250,20,20]}
+{"kind":"textbox","id":"sh/fyxobm58","slide":3,"text":"User","textPreview":"User","textChars":4,"textLines":1,"bbox":[365,296,210,42]}
+{"kind":"textbox","id":"sh/qd4vmtwr","slide":3,"text":"Mencari resep, menyimpan koleksi, menonton video, membuat resep, rating, ulasan, dan Tanya AI.","textPreview":"Mencari resep, menyimpan koleksi, menonton video, membuat resep, rating, ulasan, dan Tanya AI.","textChars":94,"textLines":1,"bbox":[365,360,210,126]}
+{"kind":"shape","id":"sh/xczed8v6","slide":3,"bbox":[640,222,258,302]}
+{"kind":"shape","id":"sh/8v6psfil","slide":3,"bbox":[664,250,20,20]}
+{"kind":"textbox","id":"sh/fa9w3m94","slide":3,"text":"Creator","textPreview":"Creator","textChars":7,"textLines":1,"bbox":[664,296,210,42]}
+{"kind":"textbox","id":"sh/qpg3ex0n","slide":3,"text":"Chef terverifikasi yang dapat mempublikasikan resep dan mengunggah video kelas memasak.","textPreview":"Chef terverifikasi yang dapat mempublikasikan resep dan mengunggah video kelas memasak.","textChars":87,"textLines":1,"bbox":[664,360,210,126]}
+{"kind":"shape","id":"sh/1gvy90je","slide":3,"bbox":[939,222,258,302]}
+{"kind":"shape","id":"sh/8z25kb6x","slide":3,"bbox":[963,250,20,20]}
+{"kind":"textbox","id":"sh/83itgfml","slide":3,"text":"Admin","textPreview":"Admin","textChars":5,"textLines":1,"bbox":[963,296,210,42]}
+{"kind":"textbox","id":"sh/xobm58z2","slide":3,"text":"Mengelola platform, konten, dan verifikasi creator melalui sisi backend/admin.","textPreview":"Mengelola platform, konten, dan verifikasi creator melalui sisi backend/admin.","textChars":78,"textLines":1,"bbox":[963,360,210,126]}
+{"kind":"textbox","id":"sh/qxs72x4n","slide":3,"text":"Prinsip akses: konten publik tetap terlihat untuk evaluasi, sedangkan aksi personal dan fitur interaktif memerlukan sesi login.","textPreview":"Prinsip akses: konten publik tetap terlihat untuk evaluasi, sedangkan aksi personal dan fitur interaktif memerlukan sesi login.","textChars":127,"textLines":1,"bbox":[42,574,1030,54]}
+{"kind":"notes","id":"nt/ftkbem","slide":3,"text":""}
+{"kind":"slide","id":"sl/8oksxp","slide":4,"title":"OUTCOME APLIKASI","textShapes":15}
+{"kind":"textbox","id":"sh/nih4byhg","slide":4,"text":"OUTCOME APLIKASI","textPreview":"OUTCOME APLIKASI","textChars":16,"textLines":1,"bbox":[42,38,520,28]}
+{"kind":"textbox","id":"sh/g3ex0nux","slide":4,"text":"Ringkasan hasil fitur","textPreview":"Ringkasan hasil fitur","textChars":21,"textLines":1,"bbox":[42,72,820,68]}
+{"kind":"shape","id":"sh/5o7qpg3e","slide":4,"bbox":[42,154,1196,1.2]}
+{"kind":"textbox","id":"sh/ylc7u54z","slide":4,"text":"CuBu - Hasil Aplikasi","textPreview":"CuBu - Hasil Aplikasi","textChars":21,"textLines":1,"bbox":[42,662,360,24]}
+{"kind":"textbox","id":"sh/r65wjudg","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1184,662,54,24]}
+{"kind":"shape","id":"sh/gr2p8nqx","slide":4,"bbox":[42,216,270,278]}
+{"kind":"textbox","id":"sh/9cvixcze","slide":4,"text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[68,252,218,86]}
+{"kind":"textbox","id":"sh/yd0z6103","slide":4,"text":"User story menjadi cakupan kebutuhan utama","textPreview":"User story menjadi cakupan kebutuhan utama","textChars":42,"textLines":1,"bbox":[70,402,214,58]}
+{"kind":"shape","id":"sh/rytsvu9k","slide":4,"bbox":[352,216,270,278]}
+{"kind":"textbox","id":"sh/bi9s36hc","slide":4,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[378,252,218,86]}
+{"kind":"textbox","id":"sh/ixczed8v","slide":4,"text":"Role: Guest, User, Creator, Admin","textPreview":"Role: Guest, User, Creator, Admin","textChars":33,"textLines":1,"bbox":[380,402,214,58]}
+{"kind":"shape","id":"sh/tovahoza","slide":4,"bbox":[662,216,270,278]}
+{"kind":"textbox","id":"sh/032lszqt","slide":4,"text":"12+","textPreview":"12+","textChars":3,"textLines":1,"bbox":[688,252,218,86]}
+{"kind":"textbox","id":"sh/bulwval8","slide":4,"text":"Endpoint mobile untuk resep, akun, koleksi, AI, dan profil","textPreview":"Endpoint mobile untuk resep, akun, koleksi, AI, dan profil","textChars":58,"textLines":1,"bbox":[690,402,214,58]}
+{"kind":"shape","id":"sh/i9s36hcr","slide":4,"bbox":[972,216,266,278]}
+{"kind":"textbox","id":"sh/p0bi9s36","slide":4,"text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[998,252,214,86]}
+{"kind":"textbox","id":"sh/0fepkzup","slide":4,"text":"Navigasi utama: Beranda, Tanya AI, Buat, Koleksi, Profil","textPreview":"Navigasi utama: Beranda, Tanya AI, Buat, Koleksi, Profil","textChars":56,"textLines":1,"bbox":[1000,402,210,58]}
+{"kind":"shape","id":"sh/byhgn29g","slide":4,"bbox":[0,568,1280,112]}
+{"kind":"textbox","id":"sh/idonyd0z","slide":4,"text":"Hasil yang tampak pada aplikasi: pengguna dapat mulai dari melihat resep, login/register, menemukan resep, belajar dari video, menyimpan koleksi, membuat kontribusi, dan meminta bantuan AI.","textPreview":"Hasil yang tampak pada aplikasi: pengguna dapat mulai dari melihat resep, login/register, menemukan resep, belajar dari video, menyimpan ...","textChars":189,"textLines":1,"bbox":[76,596,1128,50]}
+{"kind":"textbox","id":"sh/65wjudg7","slide":4,"text":"CuBu - Hasil Aplikasi","textPreview":"CuBu - Hasil Aplikasi","textChars":21,"textLines":1,"bbox":[42,662,360,24]}
+{"kind":"textbox","id":"sh/zqtcj6to","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1184,662,54,24]}
+{"kind":"notes","id":"nt/8oksxp","slide":4,"text":""}
+{"kind":"slide","id":"sl/6gpxft","slide":5,"title":"USER JOURNEY","textShapes":24}
+{"kind":"textbox","id":"sh/1orytsvu","slide":5,"text":"USER JOURNEY","textPreview":"USER JOURNEY","textChars":12,"textLines":1,"bbox":[42,38,520,28]}
+{"kind":"textbox","id":"sh/u18jqh0f","slide":5,"text":"Alur penggunaan utama","textPreview":"Alur penggunaan utama","textChars":21,"textLines":1,"bbox":[42,72,820,68]}
+{"kind":"shape","id":"sh/jm1cfa9w","slide":5,"bbox":[42,154,1196,1.2]}
+{"kind":"textbox","id":"sh/cfa9w3m9","slide":5,"text":"CuBu - Hasil Aplikasi","textPreview":"CuBu - Hasil Aplikasi","textChars":21,"textLines":1,"bbox":[42,662,360,24]}
+{"kind":"textbox","id":"sh/1032lszq","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1184,662,54,24]}
+{"kind":"shape","id":"sh/u9knih4b","slide":5,"bbox":[42,238,204,260]}
+{"kind":"textbox","id":"sh/judg7ads","slide":5,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[62,258,46,46]}
+{"kind":"textbox","id":"sh/cj6tovah","slide":5,"text":"Guest","textPreview":"Guest","textChars":5,"textLines":1,"bbox":[62,332,164,36]}
+{"kind":"textbox","id":"sh/54zidony","slide":5,"text":"Lihat daftar dan detail resep publik","textPreview":"Lihat daftar dan detail resep publik","textChars":36,"textLines":1,"bbox":[62,386,164,78]}
+{"kind":"textbox","id":"sh/t47y1kre","slide":5,"text":">","textPreview":">","textChars":1,"textLines":1,"bbox":[252,346,30,34]}
+{"kind":"shape","id":"sh/0je9cvix","slide":5,"bbox":[281,238,204,260]}
+{"kind":"textbox","id":"sh/byhgn29g","slide":5,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[301,258,46,46]}
+{"kind":"textbox","id":"sh/idonyd0z","slide":5,"text":"Akun","textPreview":"Akun","textChars":4,"textLines":1,"bbox":[301,332,164,36]}
+{"kind":"textbox","id":"sh/tcj6tova","slide":5,"text":"Register atau login untuk membuka fitur penuh","textPreview":"Register atau login untuk membuka fitur penuh","textChars":45,"textLines":1,"bbox":[301,386,164,78]}
+{"kind":"textbox","id":"sh/0rqd4vmt","slide":5,"text":">","textPreview":">","textChars":1,"textLines":1,"bbox":[491,346,30,34]}
+{"kind":"shape","id":"sh/b6xkf6dc","slide":5,"bbox":[520,238,204,260]}
+{"kind":"textbox","id":"sh/il0rqd4v","slide":5,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[540,258,46,46]}
+{"kind":"textbox","id":"sh/tovahoza","slide":5,"text":"Eksplorasi","textPreview":"Eksplorasi","textChars":10,"textLines":1,"bbox":[540,332,164,36]}
+{"kind":"textbox","id":"sh/032lszqt","slide":5,"text":"Cari resep dari nama atau bahan","textPreview":"Cari resep dari nama atau bahan","textChars":31,"textLines":1,"bbox":[540,386,164,78]}
+{"kind":"textbox","id":"sh/czed8v6p","slide":5,"text":">","textPreview":">","textChars":1,"textLines":1,"bbox":[730,346,30,34]}
+{"kind":"shape","id":"sh/5kb6xkf6","slide":5,"bbox":[759,238,204,260]}
+{"kind":"textbox","id":"sh/ytsvu9kn","slide":5,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[779,258,46,46]}
+{"kind":"textbox","id":"sh/neloj2t8","slide":5,"text":"Belajar","textPreview":"Belajar","textChars":7,"textLines":1,"bbox":[779,332,164,36]}
+{"kind":"textbox","id":"sh/cbulwval","slide":5,"text":"Buka detail, ikuti langkah, tonton video","textPreview":"Buka detail, ikuti langkah, tonton video","textChars":40,"textLines":1,"bbox":[779,386,164,78]}
+{"kind":"textbox","id":"sh/5sneloj2","slide":5,"text":">","textPreview":">","textChars":1,"textLines":1,"bbox":[969,346,30,34]}
+{"kind":"shape","id":"sh/u54zidon","slide":5,"bbox":[998,238,204,260]}
+{"kind":"textbox","id":"sh/nqxs72x4","slide":5,"text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[1018,258,46,46]}
+{"kind":"textbox","id":"sh/gbq1oryt","slide":5,"text":"Interaksi","textPreview":"Interaksi","textChars":9,"textLines":1,"bbox":[1018,332,164,36]}
+{"kind":"textbox","id":"sh/5wjudg7a","slide":5,"text":"Simpan, beri rating, ulasan, atau tanya AI","textPreview":"Simpan, beri rating, ulasan, atau tanya AI","textChars":42,"textLines":1,"bbox":[1018,386,164,78]}
+{"kind":"textbox","id":"sh/v6psfil0","slide":5,"text":"Alur ini menjaga pengguna baru tetap bisa menilai konten, lalu memberi alasan jelas untuk masuk saat ingin berinteraksi.","textPreview":"Alur ini menjaga pengguna baru tetap bisa menilai konten, lalu memberi alasan jelas untuk masuk saat ingin berinteraksi.","textChars":120,"textLines":1,"bbox":[150,560,980,48]}
+{"kind":"notes","id":"nt/6gpxft","slide":5,"text":""}
+{"kind":"slide","id":"sl/mco4pw","slide":6,"title":"ARCHITECTURE","textShapes":16}
+{"kind":"textbox","id":"sh/svu9knih","slide":6,"text":"ARCHITECTURE","textPreview":"ARCHITECTURE","textChars":12,"textLines":1,"bbox":[42,38,520,28]}
+{"kind":"textbox","id":"sh/za1gvy90","slide":6,"text":"Implementasi teknis mobile","textPreview":"Implementasi teknis mobile","textChars":26,"textLines":1,"bbox":[42,72,820,68]}
+{"kind":"shape","id":"sh/ap4r65wj","slide":6,"bbox":[42,154,1196,1.2]}
+{"kind":"textbox","id":"sh/hoza1gvy","slide":6,"text":"CuBu - Hasil Aplikasi","textPreview":"CuBu - Hasil Aplikasi","textChars":21,"textLines":1,"bbox":[42,662,360,24]}
+{"kind":"textbox","id":"sh/s36hcrmh","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1184,662,54,24]}
+{"kind":"shape","id":"sh/zidonyd0","slide":6,"bbox":[42,226,258,270]}
+{"kind":"textbox","id":"sh/a1gvy90j","slide":6,"text":"UI Compose","textPreview":"UI Compose","textChars":10,"textLines":1,"bbox":[64,254,212,38]}
+{"kind":"textbox","id":"sh/lszqtcj6","slide":6,"text":"Home, Detail, Search/AI, Create, Collection, Profile, Notifications, Verify Creator","textPreview":"Home, Detail, Search/AI, Create, Collection, Profile, Notifications, Verify Creator","textChars":83,"textLines":1,"bbox":[64,322,212,116]}
+{"kind":"textbox","id":"sh/s72x4nap","slide":6,"text":">","textPreview":">","textChars":1,"textLines":1,"bbox":[302,336,34,30]}
+{"kind":"shape","id":"sh/idonyd0z","slide":6,"bbox":[341,226,258,270]}
+{"kind":"textbox","id":"sh/byhgn29g","slide":6,"text":"ViewModel","textPreview":"ViewModel","textChars":9,"textLines":1,"bbox":[363,254,212,38]}
+{"kind":"textbox","id":"sh/0je9cvix","slide":6,"text":"State aplikasi, session restore, request API, validasi form, dan aksi user","textPreview":"State aplikasi, session restore, request API, validasi form, dan aksi user","textChars":74,"textLines":1,"bbox":[363,322,212,116]}
+{"kind":"textbox","id":"sh/t47y1kre","slide":6,"text":">","textPreview":">","textChars":1,"textLines":1,"bbox":[601,336,34,30]}
+{"kind":"shape","id":"sh/il0rqd4v","slide":6,"bbox":[640,226,258,270]}
+{"kind":"textbox","id":"sh/b6xkf6dc","slide":6,"text":"Retrofit API","textPreview":"Retrofit API","textChars":12,"textLines":1,"bbox":[662,254,212,38]}
+{"kind":"textbox","id":"sh/0rqd4vmt","slide":6,"text":"Bearer token, Gson converter, endpoint mobile recipes, collection, reviews, AI","textPreview":"Bearer token, Gson converter, endpoint mobile recipes, collection, reviews, AI","textChars":78,"textLines":1,"bbox":[662,322,212,116]}
+{"kind":"textbox","id":"sh/tcj6tova","slide":6,"text":">","textPreview":">","textChars":1,"textLines":1,"bbox":[900,336,34,30]}
+{"kind":"shape","id":"sh/ixczed8v","slide":6,"bbox":[939,226,258,270]}
+{"kind":"textbox","id":"sh/bi9s36hc","slide":6,"text":"Backend","textPreview":"Backend","textChars":7,"textLines":1,"bbox":[961,254,212,38]}
+{"kind":"textbox","id":"sh/zidonyd0","slide":6,"text":"Sumber data resep, autentikasi, creator, video, notifikasi, dan admin verification","textPreview":"Sumber data resep, autentikasi, creator, video, notifikasi, dan admin verification","textChars":82,"textLines":1,"bbox":[961,322,212,116]}
+{"kind":"shape","id":"sh/a1gvy90j","slide":6,"bbox":[42,546,1196,60]}
+{"kind":"textbox","id":"sh/hoza1gvy","slide":6,"text":"Stack: Kotlin, Jetpack Compose, Navigation Compose, Material 3, Retrofit, OkHttp, Gson, Coil, SharedPreferences, dan Android VideoView.","textPreview":"Stack: Kotlin, Jetpack Compose, Navigation Compose, Material 3, Retrofit, OkHttp, Gson, Coil, SharedPreferences, dan Android VideoView.","textChars":135,"textLines":1,"bbox":[72,562,1136,32]}
+{"kind":"notes","id":"nt/mco4pw","slide":6,"text":""}
+{"kind":"slide","id":"sl/kxvw06","slide":7,"title":"IMPLEMENTED SCREENS","textShapes":11}
+{"kind":"textbox","id":"sh/4nap4r65","slide":7,"text":"IMPLEMENTED SCREENS","textPreview":"IMPLEMENTED SCREENS","textChars":19,"textLines":1,"bbox":[42,38,520,28]}
+{"kind":"textbox","id":"sh/b2hwfyxo","slide":7,"text":"Hasil layar dan fungsi mobile","textPreview":"Hasil layar dan fungsi mobile","textChars":29,"textLines":1,"bbox":[42,72,820,68]}
+{"kind":"shape","id":"sh/mhk3q5o7","slide":7,"bbox":[42,154,1196,1.2]}
+{"kind":"textbox","id":"sh/twra5gbq","slide":7,"text":"CuBu - Hasil Aplikasi","textPreview":"CuBu - Hasil Aplikasi","textChars":21,"textLines":1,"bbox":[42,662,360,24]}
+{"kind":"textbox","id":"sh/4byhgn29","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1184,662,54,24]}
+{"kind":"shape","id":"sh/bq1oryts","slide":7,"bbox":[42,230,374,340]}
+{"kind":"shape","id":"sh/m58z25kb","slide":7,"bbox":[70,262,28,28]}
+{"kind":"textbox","id":"sh/tsvu9kni","slide":7,"text":"Penemuan resep","textPreview":"Penemuan resep","textChars":14,"textLines":1,"bbox":[70,318,310,42]}
+{"kind":"textbox","id":"sh/47y1kre1","slide":7,"text":"- Beranda dengan daftar resep\n- Search bar dan filter sort\n- Kartu resep dengan foto, rating, video tag, dan save","textPreview":"- Beranda dengan daftar resep | - Search bar dan filter sort | - Kartu resep dengan foto, rating, video tag, dan save","textChars":113,"textLines":3,"bbox":[70,384,310,120]}
+{"kind":"shape","id":"sh/adsji5sn","slide":7,"bbox":[453,230,374,340]}
+{"kind":"shape","id":"sh/3ylc7u54","slide":7,"bbox":[481,262,28,28]}
+{"kind":"textbox","id":"sh/sji5snel","slide":7,"text":"Belajar & interaksi","textPreview":"Belajar & interaksi","textChars":19,"textLines":1,"bbox":[481,318,310,42]}
+{"kind":"textbox","id":"sh/h4byhgn2","slide":7,"text":"- Detail resep dengan bahan, alat, langkah\n- Video cooking class untuk user login\n- Komentar, rating, simpan koleksi, dan Tanya AI","textPreview":"- Detail resep dengan bahan, alat, langkah | - Video cooking class untuk user login | - Komentar, rating, simpan koleksi, dan Tanya AI","textChars":130,"textLines":3,"bbox":[481,384,310,120]}
+{"kind":"shape","id":"sh/a5gbq1or","slide":7,"bbox":[864,230,374,340]}
+{"kind":"shape","id":"sh/3m94fu18","slide":7,"bbox":[892,262,28,28]}
+{"kind":"textbox","id":"sh/s72x4nap","slide":7,"text":"Kontribusi & akun","textPreview":"Kontribusi & akun","textChars":17,"textLines":1,"bbox":[892,318,310,42]}
+{"kind":"textbox","id":"sh/lszqtcj6","slide":7,"text":"- Form buat/edit resep\n- Upload foto dan video MP4 untuk creator\n- Profil, edit profil, notifikasi, dan pengajuan creator","textPreview":"- Form buat/edit resep | - Upload foto dan video MP4 untuk creator | - Profil, edit profil, notifikasi, dan pengajuan creator","textChars":121,"textLines":3,"bbox":[892,384,310,120]}
+{"kind":"textbox","id":"sh/a1gvy90j","slide":7,"text":"Catatan: deck ini memakai bukti struktur source code Android dan asset logo; screenshot runtime tidak tersedia di repo.","textPreview":"Catatan: deck ini memakai bukti struktur source code Android dan asset logo; screenshot runtime tidak tersedia di repo.","textChars":119,"textLines":1,"bbox":[42,612,980,24]}
+{"kind":"notes","id":"nt/kxvw06","slide":7,"text":""}
+{"kind":"slide","id":"sl/i0x1o9","slide":8,"title":"ACCEPTANCE COVERAGE","textShapes":5}
+{"kind":"textbox","id":"sh/wfyxobm5","slide":8,"text":"ACCEPTANCE COVERAGE","textPreview":"ACCEPTANCE COVERAGE","textChars":19,"textLines":1,"bbox":[42,38,520,28]}
+{"kind":"textbox","id":"sh/7u54zido","slide":8,"text":"Validasi terhadap user story","textPreview":"Validasi terhadap user story","textChars":28,"textLines":1,"bbox":[42,72,820,68]}
+{"kind":"shape","id":"sh/ed8bat47","slide":8,"bbox":[42,154,1196,1.2]}
+{"kind":"textbox","id":"sh/lc7u54zi","slide":8,"text":"CuBu - Hasil Aplikasi","textPreview":"CuBu - Hasil Aplikasi","textChars":21,"textLines":1,"bbox":[42,662,360,24]}
+{"kind":"textbox","id":"sh/wra5gbq1","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1184,662,54,24]}
+{"kind":"textbox","id":"sh/eloj2t83","slide":8,"text":"Status disusun dari user story terlampir dan pembacaan source code mobile Android.","textPreview":"Status disusun dari user story terlampir dan pembacaan source code mobile Android.","textChars":82,"textLines":1,"bbox":[42,600,900,28]}
+{"kind":"table","id":"tb/2t83itgf","slide":8,"name":"","rows":6,"cols":4,"preview":"Area | User Story | Status | Bukti hasil aplikasi","bbox":[42,220,1196,350]}
+{"kind":"notes","id":"nt/i0x1o9","slide":8,"text":""}
+{"kind":"slide","id":"sl/cvme8d","slide":9,"title":"IMPACT","textShapes":11}
+{"kind":"textbox","id":"sh/judg7ads","slide":9,"text":"IMPACT","textPreview":"IMPACT","textChars":6,"textLines":1,"bbox":[42,38,520,28]}
+{"kind":"textbox","id":"sh/cfa9w3m9","slide":9,"text":"Nilai yang dihasilkan","textPreview":"Nilai yang dihasilkan","textChars":21,"textLines":1,"bbox":[42,72,820,68]}
+{"kind":"shape","id":"sh/1032lszq","slide":9,"bbox":[42,154,1196,1.2]}
+{"kind":"textbox","id":"sh/u18jqh0f","slide":9,"text":"CuBu - Hasil Aplikasi","textPreview":"CuBu - Hasil Aplikasi","textChars":21,"textLines":1,"bbox":[42,662,360,24]}
+{"kind":"textbox","id":"sh/jm1cfa9w","slide":9,"text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1184,662,54,24]}
+{"kind":"shape","id":"sh/c7u54zid","slide":9,"bbox":[42,232,360,268]}
+{"kind":"shape","id":"sh/1orytsvu","slide":9,"bbox":[66,260,18,18]}
+{"kind":"textbox","id":"sh/upwb2hwf","slide":9,"text":"Belajar lebih terarah","textPreview":"Belajar lebih terarah","textChars":21,"textLines":1,"bbox":[66,294,312,34]}
+{"kind":"textbox","id":"sh/nap4r65w","slide":9,"text":"Resep memiliki bahan, alat, estimasi waktu, kesulitan, dan langkah sehingga pemula punya urutan belajar yang jelas.","textPreview":"Resep memiliki bahan, alat, estimasi waktu, kesulitan, dan langkah sehingga pemula punya urutan belajar yang jelas.","textChars":115,"textLines":1,"bbox":[66,340,312,138]}
+{"kind":"shape","id":"sh/7u54zido","slide":9,"bbox":[460,232,360,268]}
+{"kind":"shape","id":"sh/ed8bat47","slide":9,"bbox":[484,260,18,18]}
+{"kind":"textbox","id":"sh/l0rqd4vm","slide":9,"text":"Konten lokal mudah diakses","textPreview":"Konten lokal mudah diakses","textChars":26,"textLines":1,"bbox":[484,294,312,34]}
+{"kind":"textbox","id":"sh/wfyxobm5","slide":9,"text":"Fokus resep dan bahan yang dekat dengan pengguna Indonesia membuat aplikasi relevan untuk masak harian di rumah.","textPreview":"Fokus resep dan bahan yang dekat dengan pengguna Indonesia membuat aplikasi relevan untuk masak harian di rumah.","textChars":112,"textLines":1,"bbox":[484,340,312,138]}
+{"kind":"shape","id":"sh/36hcrmhk","slide":9,"bbox":[878,232,360,268]}
+{"kind":"shape","id":"sh/eloj2t83","slide":9,"bbox":[902,260,18,18]}
+{"kind":"textbox","id":"sh/lc7u54zi","slide":9,"text":"Mandiri namun terbantu","textPreview":"Mandiri namun terbantu","textChars":22,"textLines":1,"bbox":[902,294,312,34]}
+{"kind":"textbox","id":"sh/wra5gbq1","slide":9,"text":"Pengguna bisa menyimpan resep, belajar dari video, menilai hasil, dan bertanya ke AI saat menemui masalah memasak.","textPreview":"Pengguna bisa menyimpan resep, belajar dari video, menilai hasil, dan bertanya ke AI saat menemui masalah memasak.","textChars":114,"textLines":1,"bbox":[902,340,312,138]}
+{"kind":"textbox","id":"sh/7adsji5s","slide":9,"text":"Dengan alur ini, CuBu menjadi platform belajar memasak yang tidak hanya menampilkan resep, tetapi juga mendukung proses belajar sampai evaluasi hasil.","textPreview":"Dengan alur ini, CuBu menjadi platform belajar memasak yang tidak hanya menampilkan resep, tetapi juga mendukung proses belajar sampai ev...","textChars":150,"textLines":1,"bbox":[122,564,1036,58]}
+{"kind":"notes","id":"nt/cvme8d","slide":9,"text":""}
+{"kind":"slide","id":"sl/6e1neo","slide":10,"title":"CLOSING","textShapes":8}
+{"kind":"textbox","id":"sh/0z61032l","slide":10,"text":"CLOSING","textPreview":"CLOSING","textChars":7,"textLines":1,"bbox":[42,38,520,28]}
+{"kind":"textbox","id":"sh/7ed8bat4","slide":10,"text":"Kesimpulan dan pengembangan","textPreview":"Kesimpulan dan pengembangan","textChars":27,"textLines":1,"bbox":[42,72,820,68]}
+{"kind":"shape","id":"sh/itgfmlkj","slide":10,"bbox":[42,154,1196,1.2]}
+{"kind":"textbox","id":"sh/p8nqxs72","slide":10,"text":"CuBu - Hasil Aplikasi","textPreview":"CuBu - Hasil Aplikasi","textChars":21,"textLines":1,"bbox":[42,662,360,24]}
+{"kind":"textbox","id":"sh/0nuxc3yl","slide":10,"text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1184,662,54,24]}
+{"kind":"textbox","id":"sh/72x4nap4","slide":10,"text":"CuBu berhasil menerjemahkan kebutuhan cookbook lokal menjadi aplikasi mobile yang dapat dipakai untuk eksplorasi resep, pembelajaran bertahap, interaksi komunitas, kontribusi creator, dan bantuan AI.","textPreview":"CuBu berhasil menerjemahkan kebutuhan cookbook lokal menjadi aplikasi mobile yang dapat dipakai untuk eksplorasi resep, pembelajaran bert...","textChars":199,"textLines":1,"bbox":[42,208,760,112]}
+{"kind":"shape","id":"sh/ih4byhgn","slide":10,"bbox":[844,214,350,350]}
+{"kind":"textbox","id":"sh/p4r65wju","slide":10,"text":"Next step","textPreview":"Next step","textChars":9,"textLines":1,"bbox":[884,252,260,38]}
+{"kind":"textbox","id":"sh/wjudg7ad","slide":10,"text":"- Perkuat dashboard admin dan moderasi konten\n- Tambahkan rekomendasi resep berbasis preferensi\n- Sempurnakan penanganan koneksi video\n- Tambahkan test untuk edge case acceptance criteria","textPreview":"- Perkuat dashboard admin dan moderasi konten | - Tambahkan rekomendasi resep berbasis preferensi | - Sempurnakan penanganan koneksi vide...","textChars":187,"textLines":4,"bbox":[884,322,270,152]}
+{"kind":"shape","id":"sh/6tovahoz","slide":10,"bbox":[42,418,716,92]}
+{"kind":"textbox","id":"sh/vahoza1g","slide":10,"text":"Siap dipresentasikan sebagai hasil aplikasi mobile Cookbook Final Project.","textPreview":"Siap dipresentasikan sebagai hasil aplikasi mobile Cookbook Final Project.","textChars":74,"textLines":1,"bbox":[70,446,660,36]}
+{"kind":"notes","id":"nt/6e1neo","slide":10,"text":""}
