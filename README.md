@@ -40,7 +40,7 @@ Proyek ini dikembangkan sebagai Team Based Project mata kuliah Rekayasa Perangka
 | Backend | PHP 8.3+, Laravel 13 |
 | Frontend | React 19, Vite 8, Tailwind CSS 4 |
 | Database | MySQL/MariaDB |
-| Authentication | Laravel session authentication |
+| Authentication | Laravel session authentication dan Sanctum token untuk mobile |
 | Testing | PHPUnit, Vitest |
 | AI Integration | Gemini API |
 
@@ -130,6 +130,8 @@ GEMINI_BASE_URL=https://generativelanguage.googleapis.com/v1beta
 GEMINI_MODEL=gemini-2.5-flash-lite
 ```
 
+Isi `GEMINI_API_KEY` dengan API key Gemini pribadi agar fitur konsultasi memasak AI dapat digunakan.
+
 Generate application key:
 
 ```powershell
@@ -209,6 +211,7 @@ D:\praktikum-rpl-b-05\src-mobile\CookbookFinalProject
 ### Konfigurasi Koneksi API Android
 
 Aplikasi mobile mengambil data dari backend Laravel. Karena itu, alamat backend pada file `RetrofitClient.kt` harus disesuaikan dengan alamat IP perangkat yang menjalankan Laravel.
+Endpoint mobile tersedia di backend yang sama dengan prefix `api/mobile`, misalnya `api/mobile/recipes`, `api/mobile/login`, dan `api/mobile/collection`.
 
 File yang perlu diubah:
 
