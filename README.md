@@ -8,10 +8,10 @@ Proyek ini dikembangkan sebagai Team Based Project mata kuliah Rekayasa Perangka
 
 | NIM | Nama | Role |
 |---|---|---|
-| L0124143 | Syafiq Nafil Arkan | Anggota Tim |
-| L0124144 | Wantech Arofiq Huda Firdausyi | Anggota Tim |
-| L0124152 | Naufal Farrell Budianto | Anggota Tim |
-| L0124153 | Odyssey Wibi Pradana | Anggota Tim |
+| L0124143 | Syafiq Nafil Arkan | Frontend Developer |
+| L0124144 | Wantech Arofiq Huda Firdausyi | Ketua Tim & Backend Developer |
+| L0124152 | Naufal Farrell Budianto | UI/UX Designer & Developer |
+| L0124153 | Odyssey Wibi Pradana | Documentation & Quality Assurance |
 
 ## Fitur Utama
 
