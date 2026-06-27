@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\AppController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\RecipeController;
 
-// Contoh mendaftarkan route untuk mengambil daftar resep
-Route::get('/recipes', [RecipeController::class, 'index']);
+Route::get('/mobile/recipes', [AppController::class, 'recipes']);
+Route::get('/mobile/recipes/{recipe}', [AppController::class, 'recipe']);
