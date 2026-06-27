@@ -7010,6 +7010,8 @@ return array(
     'Tests\\Feature\\RecipeFlowTest' => $baseDir . '/tests/Feature/RecipeFlowTest.php',
     'Tests\\Feature\\VideoFlowTest' => $baseDir . '/tests/Feature/VideoFlowTest.php',
     'Tests\\TestCase' => $baseDir . '/tests/TestCase.php',
+    'Tests\\Unit\\CookingConsultationServiceTest' => $baseDir . '/tests/Unit/CookingConsultationServiceTest.php',
+    'Tests\\Unit\\UserCapabilityTest' => $baseDir . '/tests/Unit/UserCapabilityTest.php',
     'TheSeer\\Tokenizer\\Exception' => $vendorDir . '/theseer/tokenizer/src/Exception.php',
     'TheSeer\\Tokenizer\\NamespaceUri' => $vendorDir . '/theseer/tokenizer/src/NamespaceUri.php',
     'TheSeer\\Tokenizer\\NamespaceUriException' => $vendorDir . '/theseer/tokenizer/src/NamespaceUriException.php',

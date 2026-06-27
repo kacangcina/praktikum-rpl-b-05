@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Recipe;
 use App\Models\SystemSetting;
 use Illuminate\Http\Client\ConnectionException;
+use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
@@ -82,6 +83,9 @@ PROMPT;
                 ]);
         } catch (ConnectionException $exception) {
             throw new RuntimeException('Layanan konsultasi AI sedang tidak dapat dihubungi.', previous: $exception);
+        } catch (RequestException $exception) {
+            report(new RuntimeException('Gemini API error: '.$exception->response?->body(), previous: $exception));
+            throw new RuntimeException('Layanan konsultasi AI sedang sibuk. Coba lagi beberapa saat lagi.', previous: $exception);
         }
 
         if ($response->failed()) {

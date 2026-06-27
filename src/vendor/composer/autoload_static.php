@@ -7567,6 +7567,8 @@ class ComposerStaticInit0f7f8ef970fb8fb872b5f7bfc9dc5bae
         'Tests\\Feature\\RecipeFlowTest' => __DIR__ . '/../..' . '/tests/Feature/RecipeFlowTest.php',
         'Tests\\Feature\\VideoFlowTest' => __DIR__ . '/../..' . '/tests/Feature/VideoFlowTest.php',
         'Tests\\TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
+        'Tests\\Unit\\CookingConsultationServiceTest' => __DIR__ . '/../..' . '/tests/Unit/CookingConsultationServiceTest.php',
+        'Tests\\Unit\\UserCapabilityTest' => __DIR__ . '/../..' . '/tests/Unit/UserCapabilityTest.php',
         'TheSeer\\Tokenizer\\Exception' => __DIR__ . '/..' . '/theseer/tokenizer/src/Exception.php',
         'TheSeer\\Tokenizer\\NamespaceUri' => __DIR__ . '/..' . '/theseer/tokenizer/src/NamespaceUri.php',
         'TheSeer\\Tokenizer\\NamespaceUriException' => __DIR__ . '/..' . '/theseer/tokenizer/src/NamespaceUriException.php',
