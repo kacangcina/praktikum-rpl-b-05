@@ -34,6 +34,11 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Chef Dummy', 'username' => 'chefdummy', 'password' => bcrypt('password123'), 'role' => 'creator', 'is_verified' => true, 'created_at' => $now, 'updated_at' => $now]
         );
 
+        User::updateOrCreate(
+            ['email' => 'test@example.com'],
+            ['name' => 'Test User', 'username' => 'testuser', 'password' => bcrypt('password123'), 'role' => 'user', 'is_verified' => true, 'created_at' => $now, 'updated_at' => $now]
+        );
+
 
         // ==========================================
         // 2. CREATE RECIPES
